@@ -37,13 +37,69 @@ module tb_midi_player;
         #132300;
         $display("Stopping Middle C at time %d", $time);
 
-        midi_data = 8'd61; // C#
-        $display("Starting C# at time %d", $time);
+        midi_data = 8'd62; // D
+        $display("Starting D at time %d", $time);
         midi_valid = 1;
         #20;
         midi_valid = 0;
         #132300;
-        $display("Stopping C# at time %d", $time);
+        $display("Stopping D at time %d", $time);
+
+        midi_data = 8'd64; // E
+        $display("Starting E at time %d", $time);
+        midi_valid = 1;
+        #20;
+        midi_valid = 0;
+        #132300;
+        $display("Stopping E at time %d", $time);
+
+        midi_data = 8'd65; // F
+        $display("Starting F at time %d", $time);
+        midi_valid = 1;
+        #20;
+        midi_valid = 0;
+        #132300;
+        $display("Stopping F at time %d", $time);
+
+        midi_data = 8'd67; // G
+        $display("Starting G at time %d", $time);
+        midi_valid = 1;
+        #20;
+        midi_valid = 0;
+        #132300;
+        $display("Stopping G at time %d", $time);
+
+        midi_data = 8'd69; // A
+        $display("Starting A at time %d", $time);
+        midi_valid = 1;
+        #20;
+        midi_valid = 0;
+        #132300;
+        $display("Stopping A at time %d", $time);
+
+        midi_data = 8'd67; // G
+        $display("Starting G at time %d", $time);
+        midi_valid = 1;
+        #20;
+        midi_valid = 0;
+        #132300;
+        $display("Stopping G at time %d", $time);
+
+        midi_data = 8'd65; // F
+        $display("Starting F at time %d", $time);
+        midi_valid = 1;
+        #20;
+        midi_valid = 0;
+        #132300;
+        $display("Stopping F at time %d", $time);
+
+        midi_data = 8'd64; // E
+        $display("Starting E at time %d", $time);
+        midi_valid = 1;
+        #20;
+        midi_valid = 0;
+        #132300;
+        $display("Stopping E at time %d", $time);
 
         midi_data = 8'd62; // D
         $display("Starting D at time %d", $time);
@@ -52,6 +108,23 @@ module tb_midi_player;
         midi_valid = 0;
         #132300;
         $display("Stopping D at time %d", $time);
+
+        midi_data = 8'd60; // C
+        $display("Starting C at time %d", $time);
+        midi_valid = 1;
+        #20;
+        midi_valid = 0;
+        #132300;
+        $display("Stopping C at time %d", $time);
+
+
+
+
+
+
+
+
+
 
         $finish; // Properly finish the simulation
     end
