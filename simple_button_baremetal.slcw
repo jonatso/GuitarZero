@@ -1,0 +1,6 @@
+---
+label: "simple_button_baremetal"
+project:
+- id: "main"
+  path: "GuitarZeroMCU.slcp"
+  output: "."
