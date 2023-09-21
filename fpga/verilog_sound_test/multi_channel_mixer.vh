@@ -12,7 +12,7 @@ module multi_channel_mixer #(
   parameter ACTIVE_CHANNELS = 2
 )
 (
-  input clk,
+  // input clk,
   input signed [DATA_BITS-1:0] a,
   input signed [DATA_BITS-1:0] b,
   input signed [DATA_BITS-1:0] c,
