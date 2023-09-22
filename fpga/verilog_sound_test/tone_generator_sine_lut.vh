@@ -1,5 +1,5 @@
-`ifndef __TINY_SYNTH_TONE_SINE__
-`define __TINY_SYNTH_TONE_SINE__
+`ifndef __TINY_SYNTH_TONE_SINE_LUT__
+`define __TINY_SYNTH_TONE_SINE_LUT__
 /* =============================
  * Sine tone generator
  * =============================
@@ -10,7 +10,7 @@
  *
  * Finds the correct value in a lookup table based on the MSBs of the accumulator.
  */
-module tone_generator_sine #(
+module tone_generator_sine_lut #(
   parameter ACCUMULATOR_BITS = 24,
   parameter OUTPUT_BITS = 12,
   parameter LUT_SIZE = 1024
@@ -27,7 +27,7 @@ wire [9:0] lut_index = accumulator[ACCUMULATOR_BITS-1:ACCUMULATOR_BITS-10];
 
 // Read values from sine_lut.mem file
 initial begin
-    $readmemh("sine_lut.mem", sine_lut);
+    $readmemh("sine_lut.mem", sine_lut); // lut values are 16bit, output bits must be 16!
 end
 
 assign dout = sine_lut[lut_index];

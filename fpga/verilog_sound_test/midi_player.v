@@ -2,7 +2,10 @@
 `include "tone_generator_triangle.vh"
 `include "tone_generator_pulse.vh"
 `include "multi_channel_mixer.vh"
-`include "tone_generator_sine.vh"
+`include "tone_generator_sine_lut.vh"
+//`include "tone_generator_sine_baskara.vh"
+
+
 // `include "two_into_one_mixer.vh"
 
 module midi_player #(
@@ -60,7 +63,7 @@ module midi_player #(
 
 
     wire [OUTPUT_BITS-1:0] sine_dout;
-    tone_generator_sine #(
+    tone_generator_sine_lut #(
         .ACCUMULATOR_BITS(ACCUMULATOR_BITS),
         .OUTPUT_BITS(OUTPUT_BITS)
     ) sine(
