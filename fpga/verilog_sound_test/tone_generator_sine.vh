@@ -8,7 +8,7 @@
  *
  * Principle of operation:
  *
- * Approximate sine using Bhaskara I's sine approximation formula
+ * Finds the correct value in a lookup table based on the MSBs of the accumulator.
  */
 module tone_generator_sine #(
   parameter ACCUMULATOR_BITS = 24,
