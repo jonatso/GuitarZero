@@ -13,26 +13,26 @@ module multi_channel_mixer #(
 )
 (
   // input clk,
-  input signed [DATA_BITS-1:0] a,
-  input signed [DATA_BITS-1:0] b,
-  input signed [DATA_BITS-1:0] c,
-  input signed [DATA_BITS-1:0] d,
-  input signed [DATA_BITS-1:0] e,
-  input signed [DATA_BITS-1:0] f,
-  input signed [DATA_BITS-1:0] g,
-  input signed [DATA_BITS-1:0] h,
-  input signed [DATA_BITS-1:0] i,
-  input signed [DATA_BITS-1:0] j,
-  input signed [DATA_BITS-1:0] k,
-  input signed [DATA_BITS-1:0] l,
-  output signed [DATA_BITS-1:0] dout
+  input [DATA_BITS-1:0] a,
+  input [DATA_BITS-1:0] b,
+  input [DATA_BITS-1:0] c,
+  input [DATA_BITS-1:0] d,
+  input [DATA_BITS-1:0] e,
+  input [DATA_BITS-1:0] f,
+  input [DATA_BITS-1:0] g,
+  input [DATA_BITS-1:0] h,
+  input [DATA_BITS-1:0] i,
+  input [DATA_BITS-1:0] j,
+  input [DATA_BITS-1:0] k,
+  input [DATA_BITS-1:0] l,
+  output [DATA_BITS-1:0] dout
 );
 
   localparam EXTRA_BITS_REQUIRED = $clog2(ACTIVE_CHANNELS);
 
-  wire signed [DATA_BITS+4:0] sum;
+  wire [DATA_BITS+4:0] sum;
 
-  localparam MIN_VALUE = -(2**(DATA_BITS-1));
+  localparam MIN_VALUE = 0;
   localparam MAX_VALUE = (2**(DATA_BITS-1))-1;
 
   assign sum = (a+b+c+d+e+f+g+h+i+j+k+l) >>> EXTRA_BITS_REQUIRED;

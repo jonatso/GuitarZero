@@ -11,12 +11,12 @@ module two_into_one_mixer #(
   parameter DATA_BITS = 12
 )
 (
-  input signed [DATA_BITS-1:0] a,
-  input signed [DATA_BITS-1:0] b,
-  output signed [DATA_BITS-1:0] dout
+  input [DATA_BITS-1:0] a,
+  input [DATA_BITS-1:0] b,
+  output [DATA_BITS-1:0] dout
 );
 
-  wire signed [DATA_BITS:0] intermediate;
+  wire [DATA_BITS:0] intermediate;
 
   assign intermediate = a+b;
   

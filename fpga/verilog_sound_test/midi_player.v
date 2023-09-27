@@ -2,7 +2,9 @@
 `include "tone_generator_triangle.vh"
 `include "tone_generator_pulse.vh"
 `include "multi_channel_mixer.vh"
+`include "two_into_one_mixer.vh"
 `include "tone_generator_sine_lut.vh"
+`include "amplitude_modulator.vh"
 //`include "tone_generator_sine_baskara.vh"
 
 
@@ -72,24 +74,43 @@ module midi_player #(
         );
 
 
-    multi_channel_mixer #(
-        .DATA_BITS(OUTPUT_BITS),
-        .ACTIVE_CHANNELS(2)
+    // multi_channel_mixer #(
+    //     .DATA_BITS(OUTPUT_BITS),
+    //     .ACTIVE_CHANNELS(2)
+    // ) mixer(
+    //     .a(saw_dout),
+    //     .b(triangle_dout),
+    //     .c(16'b0),
+    //     .d(16'b0),
+    //     .e(16'b0),
+    //     .f(16'b0),
+    //     .g(16'b0),
+    //     .h(16'b0),
+    //     .i(16'b0),
+    //     .j(16'b0),
+    //     .k(16'b0),
+    //     .l(16'b0),
+    //     .dout(sound_data)
+    // );
+
+    two_into_one_mixer #(
+        .DATA_BITS(OUTPUT_BITS)
     ) mixer(
-        .a(sine_dout),
-        .b(sine_dout),
-        .c(16'b0),
-        .d(16'b0),
-        .e(16'b0),
-        .f(16'b0),
-        .g(16'b0),
-        .h(16'b0),
-        .i(16'b0),
-        .j(16'b0),
-        .k(16'b0),
-        .l(16'b0),
+        .a(saw_dout),
+        .b(triangle_dout),
         .dout(sound_data)
     );
+
+    // amplitude_modulator #(
+    //     .DATA_BITS(OUTPUT_BITS)
+    // ) amp(
+    //     .din(sine_dout),
+    //     .amplitude(8'h20),
+    //     .dout(sound_data),
+    //     .clk(clk)
+    // );
+
+
 
     initial begin
         accumulator = 0;
