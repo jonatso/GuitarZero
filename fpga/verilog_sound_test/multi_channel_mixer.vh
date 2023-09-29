@@ -33,7 +33,7 @@ module multi_channel_mixer #(
   wire [DATA_BITS+4:0] sum;
 
   localparam MIN_VALUE = 0;
-  localparam MAX_VALUE = (2**(DATA_BITS-1))-1;
+  localparam MAX_VALUE = (2**(DATA_BITS))-1;
 
   assign sum = (a+b+c+d+e+f+g+h+i+j+k+l) >>> EXTRA_BITS_REQUIRED;
   assign dout = (sum < MIN_VALUE)
