@@ -1,5 +1,7 @@
+import matplotlib.pyplot as plt
 import numpy as np
 from scipy.io.wavfile import write
+
 
 # Read sound data from the file
 with open('sound_data.txt', 'r') as f:
@@ -14,3 +16,18 @@ with open('sound_data.txt', 'r') as f:
 
     # Save the data to a WAV file
     write('output.wav', rate, data)
+
+    # # plot first 4096 samples
+    # plt.plot(data[:4096])
+
+    # # Plot a line at midpoint, and upper and lower bounds
+    # plt.plot([0, 4096], [0, 0], color='black', linestyle='--')
+    # plt.plot([0, 4096], [2**15, 2**15], color='black', linestyle='--')
+    # plt.plot([0, 4096], [-2**15, -2**15], color='black', linestyle='--')
+
+    # plt.ylabel("Amplitude")
+    # plt.xlabel("Time")
+    # plt.title("Sample Wav")
+    # plt.show()
+
+    

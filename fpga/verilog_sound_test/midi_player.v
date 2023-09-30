@@ -4,11 +4,8 @@
 `include "multi_channel_mixer.vh"
 `include "two_into_one_mixer.vh"
 `include "tone_generator_sine_lut.vh"
-`include "amplitude_modulator.vh"
+`include "amplitude_downscaler.vh"
 //`include "tone_generator_sine_baskara.vh"
-
-
-// `include "two_into_one_mixer.vh"
 
 module midi_player #(
   parameter FREQ_BITS = 16,
@@ -93,22 +90,22 @@ module midi_player #(
     //     .dout(sound_data)
     // );
 
-    two_into_one_mixer #(
-        .DATA_BITS(OUTPUT_BITS)
-    ) mixer(
-        .a(saw_dout),
-        .b(triangle_dout),
+    // two_into_one_mixer #(
+    //     .DATA_BITS(OUTPUT_BITS)
+    // ) mixer(
+    //     .a(sine_dout),
+    //     .b(sine_dout),
+    //     .dout(sound_data)
+    // );
+
+    amplitude_downscaler #(
+        .DATA_BITS(OUTPUT_BITS),
+        .AMPLITUDE_BITS(8)
+    ) amp(
+        .din(pulse_dout),
+        .amplitude(8'hEF),
         .dout(sound_data)
     );
-
-    // amplitude_modulator #(
-    //     .DATA_BITS(OUTPUT_BITS)
-    // ) amp(
-    //     .din(sine_dout),
-    //     .amplitude(8'h20),
-    //     .dout(sound_data),
-    //     .clk(clk)
-    // );
 
 
 
