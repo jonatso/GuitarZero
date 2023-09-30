@@ -1,17 +1,11 @@
-`include "tone_generator_saw.vh"
-`include "tone_generator_triangle.vh"
-`include "tone_generator_pulse.vh"
-`include "multi_channel_mixer.vh"
-`include "two_into_one_mixer.vh"
-`include "tone_generator_sine_lut.vh"
-`include "amplitude_downscaler.vh"
-//`include "tone_generator_sine_baskara.vh"
+`include "voice.vh"
 
 module midi_player #(
   parameter FREQ_BITS = 16,
   parameter PULSEWIDTH_BITS = 12,
   parameter OUTPUT_BITS = 16,
-  parameter ACCUMULATOR_BITS = 24
+  parameter ACCUMULATOR_BITS = 24,
+  parameter AMPLITUDE_BITS = 8
 ) (
     input wire clk,
     input wire [7:0] midi_data,
@@ -20,107 +14,26 @@ module midi_player #(
     output reg sound_valid
 );
 
-    `include "midi_note_to_tone_freq.vh"
-    wire [15:0] tone_freq;
-    assign tone_freq = midi_note_to_tone_freq(midi_data) * 4;
-
-
-    reg [ACCUMULATOR_BITS-1:0] accumulator;
-    reg [ACCUMULATOR_BITS-1:0] prev_accumulator;
-
-    reg [15:0] current_freq = 0;
-    reg [15:0] counter = 0;
-
-    wire [OUTPUT_BITS-1:0] saw_dout;
-    tone_generator_saw #(
-        .ACCUMULATOR_BITS(ACCUMULATOR_BITS),
-        .OUTPUT_BITS(OUTPUT_BITS)
-    ) saw(
-        .accumulator(accumulator),
-        .dout(saw_dout)
-        );
-
-    wire [OUTPUT_BITS-1:0] triangle_dout;
-    tone_generator_triangle #(
-        .ACCUMULATOR_BITS(ACCUMULATOR_BITS),
-        .OUTPUT_BITS(OUTPUT_BITS)
-    ) triangle(
-        .accumulator(accumulator),
-        .dout(triangle_dout)
-        );
-
-    wire [OUTPUT_BITS-1:0] pulse_dout;
-    tone_generator_pulse #(
-        .ACCUMULATOR_BITS(ACCUMULATOR_BITS),
+    voice #(
+        .PULSEWIDTH_BITS(PULSEWIDTH_BITS),
         .OUTPUT_BITS(OUTPUT_BITS),
-        .PULSEWIDTH_BITS(PULSEWIDTH_BITS)
-    ) pulse(
-        .accumulator(accumulator),
-        .dout(pulse_dout),
-        .pulse_width(12'h800)
-        );
-
-
-    wire [OUTPUT_BITS-1:0] sine_dout;
-    tone_generator_sine_lut #(
         .ACCUMULATOR_BITS(ACCUMULATOR_BITS),
-        .OUTPUT_BITS(OUTPUT_BITS)
-    ) sine(
-        .accumulator(accumulator),
-        .dout(sine_dout)
-        );
-
-
-    // multi_channel_mixer #(
-    //     .DATA_BITS(OUTPUT_BITS),
-    //     .ACTIVE_CHANNELS(2)
-    // ) mixer(
-    //     .a(saw_dout),
-    //     .b(triangle_dout),
-    //     .c(16'b0),
-    //     .d(16'b0),
-    //     .e(16'b0),
-    //     .f(16'b0),
-    //     .g(16'b0),
-    //     .h(16'b0),
-    //     .i(16'b0),
-    //     .j(16'b0),
-    //     .k(16'b0),
-    //     .l(16'b0),
-    //     .dout(sound_data)
-    // );
-
-    // two_into_one_mixer #(
-    //     .DATA_BITS(OUTPUT_BITS)
-    // ) mixer(
-    //     .a(sine_dout),
-    //     .b(sine_dout),
-    //     .dout(sound_data)
-    // );
-
-    amplitude_downscaler #(
-        .DATA_BITS(OUTPUT_BITS),
-        .AMPLITUDE_BITS(8)
-    ) amp(
-        .din(pulse_dout),
-        .amplitude(8'hEF),
-        .dout(sound_data)
+        .FREQ_BITS(FREQ_BITS),
+        .AMPLITUDE_BITS(AMPLITUDE_BITS)
+    ) voice1(
+        .clk(clk),
+        .midi_data(midi_data),
+        .enable(midi_valid),
+        .dout(sound_data),
+        .waveform_select(2'b00)
     );
 
-
-
-    initial begin
-        accumulator = 0;
-        prev_accumulator = 0;
-        sound_valid = 1;
-    end
-
     always @(posedge clk) begin
-        prev_accumulator <= accumulator;
-        accumulator <= accumulator + tone_freq;
-        // $display("triangle_dout: %d", triangle_dout);
-        // $display("saw_dout: %d", saw_dout);
-        // $display("sound_data: %d", sound_data);
+        if (midi_valid) begin
+            sound_valid <= 1;
+        end else begin
+            sound_valid <= 0;
+        end
     end
 
 endmodule
