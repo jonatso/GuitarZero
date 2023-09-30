@@ -37,14 +37,18 @@ module voice #(
         .dout(tone_generator_dout)
     );
 
+    wire [OUTPUT_BITS-1:0] amp_dout;
+
     amplitude_downscaler #(
         .DATA_BITS(OUTPUT_BITS),
         .AMPLITUDE_BITS(8)
     ) amp(
         .din(tone_generator_dout),
         .amplitude(amplitude),
-        .dout(dout)
+        .dout(amp_dout)
     );
+
+    assign dout = enable ? amp_dout : 0;
 
 endmodule
 
