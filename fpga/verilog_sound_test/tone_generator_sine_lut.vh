@@ -27,7 +27,7 @@ wire [9:0] lut_index = accumulator[ACCUMULATOR_BITS-1:ACCUMULATOR_BITS-10];
 
 // Read values from sine_lut.mem file
 initial begin
-    $readmemh("sine_lut.mem", sine_lut); // lut values are 16bit, output bits must be 16!
+    $readmemh("data/sine_lut.mem", sine_lut); // lut values are 16bit, output bits must be 16!
 end
 
 assign dout = sine_lut[lut_index];

@@ -89,7 +89,7 @@ module tb_midi_player;
     integer output_file;
 
     initial begin
-        output_file = $fopen("sound_data.txt", "w");
+        output_file = $fopen("output/sound_data.txt", "w");
         if (output_file === 0) $display("Error: Couldn't open sound_data.txt for writing.");
     end
 

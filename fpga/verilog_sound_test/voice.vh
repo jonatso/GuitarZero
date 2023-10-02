@@ -1,6 +1,7 @@
 `include "tone_generator.vh"
 `include "amplitude_downscaler.vh"
 `include "filter_ewma.vh"
+`include "adsr_generator.vh"
 
 module voice #(
   parameter PULSEWIDTH_BITS = 12,
@@ -39,18 +40,40 @@ module voice #(
         .dout(tone_generator_dout)
     );
 
-    wire [OUTPUT_BITS-1:0] amp_dout;
+    wire [7:0] adsr_amplitude;
+    adsr_generator #(
+    ) adsr(
+        .clk(clk),
+        .gate(enable),
+        .rst(1'b0),
+        .a(4'd10),
+        .d(4'd10),
+        .s(4'd10),
+        .r(4'd10),
+        .amplitude(adsr_amplitude)
+    );
+
+
+    wire [OUTPUT_BITS-1:0] adsr_amp_dout;
     amplitude_downscaler #(
         .DATA_BITS(OUTPUT_BITS),
         .AMPLITUDE_BITS(8)
-    ) amp(
+    ) adsr_amp(
         .din(tone_generator_dout),
-        .amplitude(amplitude),
-        .dout(amp_dout)
+        // .amplitude(amplitude),
+        .amplitude(adsr_amplitude),
+        .dout(adsr_amp_dout)
     );
 
-    // wire [7:0] alpha;
-    // assign alpha = 8'hE7;
+    wire [OUTPUT_BITS-1:0] main_amp_dout;
+    amplitude_downscaler #(
+        .DATA_BITS(OUTPUT_BITS),
+        .AMPLITUDE_BITS(8)
+    ) main_amp(
+        .din(adsr_amp_dout),
+        .amplitude(amplitude),
+        .dout(main_amp_dout)
+    );
 
     wire [OUTPUT_BITS-1:0] filter_dout;
     filter_ewma #(
@@ -58,11 +81,12 @@ module voice #(
     ) filter(
         .clk(clk),
         .alpha(filter_alpha),
-        .din(amp_dout),
+        .din(main_amp_dout),
         .dout(filter_dout)
     );
 
     assign dout = enable ? filter_dout : 0;
+    // assign dout = filter_dout;
 
 endmodule
 

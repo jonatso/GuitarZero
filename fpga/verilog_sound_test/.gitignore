@@ -1,2 +1,2 @@
-*.wav
-sound_data.txt
+# ignore all files in output folder
+output/*
