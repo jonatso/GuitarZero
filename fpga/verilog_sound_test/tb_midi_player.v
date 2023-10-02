@@ -9,6 +9,7 @@ module tb_midi_player;
     wire sound_valid;
     reg [7:0] amplitude;
     reg [1:0] waveform_select;
+    reg [7:0] filter_alpha;
 
     // Instantiate the midi_player module
     midi_player uut (
@@ -18,7 +19,8 @@ module tb_midi_player;
         .amplitude(amplitude),
         .waveform_select(waveform_select),
         .sound_data(sound_data),
-        .sound_valid(sound_valid)
+        .sound_valid(sound_valid),
+        .filter_alpha(filter_alpha)
     );
 
     // Clock generation
@@ -33,6 +35,8 @@ module tb_midi_player;
         midi_data = 8'b0;
         amplitude = 8'hFF;
         waveform_select = 2'b00;
+        filter_alpha = 8'h07;
+
         #20;
         midi_data = 8'd60; // Middle C
         #20
@@ -41,10 +45,42 @@ module tb_midi_player;
         #100000;
         midi_valid = 1;
         midi_data = 8'd62; // D
-        $display("Starting D at time %d", $time);
         #20;
         #132300;
-        $display("Stopping D at time %d", $time);
+        midi_valid = 0;
+
+        // change filter alpha
+        filter_alpha = 8'hE7;
+        #200000;
+        midi_data = 8'd60; // Middle C
+        midi_valid = 1;
+        #20
+        #132300;
+        midi_valid = 0;
+        #100000;
+        midi_valid = 1;
+        midi_data = 8'd62; // D
+        #20;
+        #132300;
+        midi_valid = 0;
+
+        // choose new waveform
+        waveform_select = 2;
+        #200000;
+        midi_data = 8'd60; // Middle C
+        midi_valid = 1;
+        #20
+        #132300;
+        midi_valid = 0;
+        #100000;
+        midi_valid = 1;
+        midi_data = 8'd62; // D
+        #20;
+        #132300;
+        midi_valid = 0;
+
+
+
 
 
         $finish; // Properly finish the simulation

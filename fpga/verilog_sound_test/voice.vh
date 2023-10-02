@@ -1,5 +1,6 @@
 `include "tone_generator.vh"
 `include "amplitude_downscaler.vh"
+`include "filter_ewma.vh"
 
 module voice #(
   parameter PULSEWIDTH_BITS = 12,
@@ -14,6 +15,7 @@ module voice #(
     input wire [AMPLITUDE_BITS-1:0] amplitude,
     input wire [1:0] waveform_select,
     input wire [PULSEWIDTH_BITS-1:0] pulse_width,
+    input wire [7:0] filter_alpha,
     output wire [OUTPUT_BITS-1:0] dout
 );
 
@@ -38,7 +40,6 @@ module voice #(
     );
 
     wire [OUTPUT_BITS-1:0] amp_dout;
-
     amplitude_downscaler #(
         .DATA_BITS(OUTPUT_BITS),
         .AMPLITUDE_BITS(8)
@@ -48,7 +49,20 @@ module voice #(
         .dout(amp_dout)
     );
 
-    assign dout = enable ? amp_dout : 0;
+    // wire [7:0] alpha;
+    // assign alpha = 8'hE7;
+
+    wire [OUTPUT_BITS-1:0] filter_dout;
+    filter_ewma #(
+        .DATA_BITS(OUTPUT_BITS)
+    ) filter(
+        .clk(clk),
+        .alpha(filter_alpha),
+        .din(amp_dout),
+        .dout(filter_dout)
+    );
+
+    assign dout = enable ? filter_dout : 0;
 
 endmodule
 

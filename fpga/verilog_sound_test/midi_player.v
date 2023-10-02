@@ -12,6 +12,7 @@ module midi_player #(
     input wire midi_valid,
     input wire [AMPLITUDE_BITS-1:0] amplitude,
     input wire [1:0] waveform_select,
+    input wire [7:0] filter_alpha,
     output wire [OUTPUT_BITS-1:0] sound_data,
     output reg sound_valid
 );
@@ -29,7 +30,8 @@ module midi_player #(
         .dout(sound_data),
         .waveform_select(waveform_select),
         .pulse_width(12'd2048),
-        .amplitude(amplitude)
+        .amplitude(amplitude),
+        .filter_alpha(filter_alpha)
     );
 
     always @(posedge clk) begin
