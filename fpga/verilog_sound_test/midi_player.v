@@ -31,7 +31,11 @@ module midi_player #(
         .waveform_select(waveform_select),
         .pulse_width(12'd2048),
         .amplitude(amplitude),
-        .filter_alpha(filter_alpha)
+        .filter_alpha(filter_alpha),
+        .adsr_a(4'h9),
+        .adsr_d(4'h9),
+        .adsr_s(4'hC),
+        .adsr_r(4'h7)
     );
 
     always @(posedge clk) begin

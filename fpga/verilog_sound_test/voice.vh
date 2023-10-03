@@ -17,6 +17,10 @@ module voice #(
     input wire [1:0] waveform_select,
     input wire [PULSEWIDTH_BITS-1:0] pulse_width,
     input wire [7:0] filter_alpha,
+    input wire [3:0] adsr_a,
+    input wire [3:0] adsr_d,
+    input wire [3:0] adsr_s,
+    input wire [3:0] adsr_r,
     output wire [OUTPUT_BITS-1:0] dout
 );
 
@@ -46,10 +50,10 @@ module voice #(
         .clk(clk),
         .gate(enable),
         .rst(1'b0),
-        .a(4'd10),
-        .d(4'd10),
-        .s(4'd10),
-        .r(4'd10),
+        .a(adsr_a),
+        .d(adsr_d),
+        .s(adsr_s),
+        .r(adsr_r),
         .amplitude(adsr_amplitude)
     );
 

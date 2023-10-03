@@ -1,2 +1,4 @@
 # ignore all files in output folder
 output/*
+.DS_Store
+**/.DS_Store
