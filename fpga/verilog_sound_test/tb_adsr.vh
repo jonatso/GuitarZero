@@ -35,23 +35,39 @@ module tb_adsr_generator;
         // Initialize
         clk = 0;
         gate = 0;
-        a = 4'd10;
-        d = 4'd10;
-        s = 4'd10;
-        r = 4'd10;
+        a = 4'h9;
+        d = 4'h9;
+        s = 4'hC;
+        r = 4'h7;
 
         file_descriptor = $fopen("output/amplitude_output.txt", "w");
 
         // Apply test vectors
-        #10000 gate = 1; // Start the envelope (Attack phase)
-        // #10000 a = 4'd3; d = 4'd3; s = 4'd4; r = 4'd3; // Modify the ADSR parameters
-        #20000 gate = 0; // Release the envelope (Release phase)
-        #40000 gate = 1; // Start the envelope again (Attack phase)
-        #50000 gate = 0; // Release the envelope (Release phase)
-        #600000 $finish; // End the simulation
+        gate = 1;
+        #500000;
+        gate = 0;
+        #200000;
+
+        gate = 1;
+        #300000;
+        gate = 0;
+        #200000;
+
+        gate = 1;
+        #300000;
+        gate = 0;
+        #200;
+        gate = 1;
+
+        #500000;
+        gate = 0;
+
+
+        #200000 $finish; // End the simulation
     end
 
     always @(posedge clk) begin
+        // $display("Amplitude: %d", amplitude);
         $fwrite(file_descriptor, "%d\n", amplitude);
     end
 

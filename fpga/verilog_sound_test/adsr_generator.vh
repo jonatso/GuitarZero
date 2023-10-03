@@ -117,6 +117,7 @@ module adsr_generator #(
     state = OFF;
     amplitude = 0;
     accumulator = 0;
+    reltmp = 0;
   end
 
 
@@ -220,7 +221,8 @@ module adsr_generator #(
           RELEASE:
             begin
               accumulator <= accumulator + release_inc;
-              reltmp <= ((exp_out * sustain_volume) >> 8);
+              // reltmp <= ((exp_out * sustain_volume) >> 8);
+              reltmp = ((exp_out * sustain_volume) >> 8); // needs blocking assignment to make it work on the first clock cycle of the release phase 
               amplitude <= reltmp;
               if (gate) begin
                 amplitude <= 0;
