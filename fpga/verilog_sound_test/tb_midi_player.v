@@ -38,51 +38,66 @@ module tb_midi_player;
         filter_alpha = 8'h07;
 
         #20;
-        midi_data = 8'd60; // Middle C
+        midi_data = 8'd72; // Middle C
         #20
         #132300;
         midi_valid = 0;
         #100000;
         midi_valid = 1;
-        midi_data = 8'd62; // D
+        midi_data = 8'd74; // D
         #20;
         #132300;
         midi_valid = 0;
 
+        #300000; // for testing adsr finishing
         // change filter alpha
-        filter_alpha = 8'hE7;
-        #200000;
-        midi_data = 8'd60; // Middle C
+        filter_alpha = 8'h57;
+        midi_data = 8'd72; // Middle C
         midi_valid = 1;
         #20
         #132300;
         midi_valid = 0;
         #100000;
         midi_valid = 1;
-        midi_data = 8'd62; // D
+        midi_data = 8'd74; // D
         #20;
         #132300;
         midi_valid = 0;
 
+        #300000; // for testing adsr finishing
+        // change filter alpha
+        filter_alpha = 8'hF7;
+        midi_data = 8'd72; // Middle C
+        midi_valid = 1;
+        #20
+        #132300;
+        midi_valid = 0;
+        #100000;
+        midi_valid = 1;
+        midi_data = 8'd74; // D
+        #20;
+        #132300;
+        midi_valid = 0;
+
+        #300000;
         // choose new waveform
         waveform_select = 2;
-        #200000;
-        midi_data = 8'd60; // Middle C
+        midi_data = 8'd72; // Middle C
         midi_valid = 1;
         #20
         #132300;
         midi_valid = 0;
         #100000;
         midi_valid = 1;
-        midi_data = 8'd62; // D
+        midi_data = 8'd74; // D
         #20;
         #132300;
         midi_valid = 0;
 
+        
 
 
-
-
+        #300000; // for testing adsr finishing
         $finish; // Properly finish the simulation
     end
 

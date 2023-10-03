@@ -89,8 +89,7 @@ module voice #(
         .dout(filter_dout)
     );
 
-    assign dout = enable ? filter_dout : 0;
-    // assign dout = filter_dout;
+    //assign dout = enable ? filter_dout : 0;
+    assign dout = filter_dout;
 
 endmodule
-
