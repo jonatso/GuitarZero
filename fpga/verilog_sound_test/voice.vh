@@ -2,6 +2,7 @@
 `include "amplitude_downscaler.vh"
 `include "filter_ewma.vh"
 `include "adsr_generator.vh"
+`include "simple_reverb.vh" 
 
 module voice #(
   parameter PULSEWIDTH_BITS = 12,
@@ -17,6 +18,8 @@ module voice #(
     input wire [1:0] waveform_select,
     input wire [PULSEWIDTH_BITS-1:0] pulse_width,
     input wire [7:0] filter_alpha,
+    input wire reverb_enable,
+    input wire [7:0] reverb_alpha,
     input wire [3:0] adsr_a,
     input wire [3:0] adsr_d,
     input wire [3:0] adsr_s,
@@ -89,7 +92,18 @@ module voice #(
         .dout(filter_dout)
     );
 
-    //assign dout = enable ? filter_dout : 0;
-    assign dout = filter_dout;
+    wire [OUTPUT_BITS-1:0] reverb_dout;
+    simple_reverb #(
+        .DATA_BITS(OUTPUT_BITS),
+        .DELAY_LENGTH(2048)
+    ) reverb(
+        .clk(clk),
+        .enable(reverb_enable),
+        .reverb_alpha(reverb_alpha),
+        .din(filter_dout),
+        .dout(reverb_dout)
+    );
+
+    assign dout = reverb_dout;
 
 endmodule

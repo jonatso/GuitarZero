@@ -33,7 +33,7 @@ module tb_midi_player;
         clk = 0;
         midi_valid = 1;
         midi_data = 8'b0;
-        amplitude = 8'hFF;
+        amplitude = 8'h3F;
         waveform_select = 2'b00;
         filter_alpha = 8'h07;
 
@@ -49,7 +49,7 @@ module tb_midi_player;
         #132300;
         midi_valid = 0;
 
-        #300000; // for testing adsr finishing
+        #350000; // for testing adsr finishing
         // change filter alpha
         filter_alpha = 8'h57;
         midi_data = 8'd72; // Middle C
@@ -64,7 +64,7 @@ module tb_midi_player;
         #132300;
         midi_valid = 0;
 
-        #300000; // for testing adsr finishing
+        #350000; // for testing adsr finishing
         // change filter alpha
         filter_alpha = 8'hF7;
         midi_data = 8'd72; // Middle C
@@ -79,7 +79,7 @@ module tb_midi_player;
         #132300;
         midi_valid = 0;
 
-        #300000;
+        #350000;
         // choose new waveform
         waveform_select = 2;
         midi_data = 8'd72; // Middle C
@@ -97,7 +97,7 @@ module tb_midi_player;
         
 
 
-        #300000; // for testing adsr finishing
+        #350000; // for testing adsr finishing
         $finish; // Properly finish the simulation
     end
 

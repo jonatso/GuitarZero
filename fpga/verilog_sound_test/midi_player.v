@@ -35,7 +35,9 @@ module midi_player #(
         .adsr_a(4'h9),
         .adsr_d(4'h9),
         .adsr_s(4'hC),
-        .adsr_r(4'h7)
+        .adsr_r(4'h7),
+        .reverb_enable(1'b1),
+        .reverb_alpha(8'hD0)
     );
 
     always @(posedge clk) begin
