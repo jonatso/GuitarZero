@@ -24,6 +24,10 @@ module simple_reverb #(
       // Update the delay_line_pointer for the next cycle
       delay_line_pointer <= (delay_line_pointer + 1) % DELAY_LENGTH;
     end
+    else begin
+      // If the reverb is disabled, just pass the input through
+      dout <= din;
+    end
   end
 
   // Initialization to avoid X values
