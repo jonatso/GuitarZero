@@ -19,7 +19,6 @@ module tb_midi_player;
         .amplitude(amplitude),
         .waveform_select(waveform_select),
         .sound_data(sound_data),
-        .sound_valid(sound_valid),
         .filter_alpha(filter_alpha)
     );
 
