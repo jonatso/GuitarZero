@@ -1,28 +1,18 @@
 `include "voice.v"
 
-module midi_player #(
-  parameter FREQ_BITS = 16,
-  parameter PULSEWIDTH_BITS = 12,
-  parameter OUTPUT_BITS = 16,
-  parameter ACCUMULATOR_BITS = 24,
-  parameter AMPLITUDE_BITS = 8
-) (
+module midi_player 
+(
     input wire clk,
     input wire [7:0] midi_data,
     input wire midi_valid,
-    input wire [AMPLITUDE_BITS-1:0] amplitude,
+    input wire [7:0] amplitude,
     input wire [1:0] waveform_select,
     input wire [7:0] filter_alpha,
-    output wire [OUTPUT_BITS-1:0] sound_data,
+    output wire [15:0] sound_data,
     output reg sound_valid
 );
 
     voice #(
-        .PULSEWIDTH_BITS(PULSEWIDTH_BITS),
-        .OUTPUT_BITS(OUTPUT_BITS),
-        .ACCUMULATOR_BITS(ACCUMULATOR_BITS),
-        .FREQ_BITS(FREQ_BITS),
-        .AMPLITUDE_BITS(AMPLITUDE_BITS)
     ) voice1(
         .clk(clk),
         .midi_data(midi_data),

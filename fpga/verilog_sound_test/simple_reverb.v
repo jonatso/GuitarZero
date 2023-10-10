@@ -1,15 +1,14 @@
 module simple_reverb #(
-  parameter DATA_BITS = 16,
   parameter DELAY_LENGTH = 1024 // Define the delay length (can be adjusted for more/less reverb)
 ) (
   input wire clk,
   input wire enable,
   input [7:0] reverb_alpha,  // Weighting factor for the delayed sample
-  input wire [DATA_BITS-1:0] din,   
-  output reg [DATA_BITS-1:0] dout
+  input wire [15:0] din,   
+  output reg [15:0] dout
 );
 
-  reg [DATA_BITS-1:0] delay_line [0:DELAY_LENGTH-1];
+  reg [15:0] delay_line [0:DELAY_LENGTH-1];
   reg [$clog2(DELAY_LENGTH)-1:0] delay_line_pointer;
   integer i;
 

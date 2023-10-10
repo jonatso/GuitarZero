@@ -1,14 +1,13 @@
-module filter_ewma #(
-    parameter DATA_BITS = 12
-) (
+module filter_ewma 
+(
     input clk,
     input wire [7:0] alpha,          // Scaling factor in fixed-point format
-    input wire [DATA_BITS-1:0] din,   // unfiltered data in
-    output reg [DATA_BITS-1:0] dout   // filtered data out
+    input wire [15:0] din,   // unfiltered data in
+    output reg [15:0] dout   // filtered data out
 );
 
-reg [DATA_BITS-1:0] prev_dout; // Stores the previous output value
-reg [DATA_BITS+7:0] mult1, mult2; // Temporary variables for multiplications
+reg [15:0] prev_dout; // Stores the previous output value
+reg [23:0] mult1, mult2; // Temporary variables for multiplications
 reg [7:0] inv_alpha;
 
 initial begin

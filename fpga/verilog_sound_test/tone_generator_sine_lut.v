@@ -1,17 +1,13 @@
-module tone_generator_sine_lut #(
-  parameter ACCUMULATOR_BITS = 24,
-  parameter OUTPUT_BITS = 12,
-  parameter LUT_SIZE = 1024
-)(
-  input [ACCUMULATOR_BITS-1:0] accumulator,
-  output wire [OUTPUT_BITS-1:0] dout
+module tone_generator_sine_lut (
+  input [23:0] accumulator,
+  output wire [15:0] dout
 );
 
 // Lookup Table for sine values
-reg [OUTPUT_BITS-1:0] sine_lut [0:LUT_SIZE-1];
+reg [15:0] sine_lut [0:1023];
 
 // Use the MSBs of the accumulator to index into the LUT
-wire [9:0] lut_index = accumulator[ACCUMULATOR_BITS-1:ACCUMULATOR_BITS-10];
+wire [9:0] lut_index = accumulator[23:14];
 
 // Read values from sine_lut.mem file
 initial begin

@@ -94,8 +94,6 @@ module tb_midi_player;
         #132300;
         midi_valid = 0;
 
-        
-
 
         #350000; // for testing adsr finishing
         $finish; // Properly finish the simulation

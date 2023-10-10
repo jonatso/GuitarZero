@@ -4,19 +4,13 @@
 `include "adsr_generator.v"
 `include "simple_reverb.v" 
 
-module voice #(
-  parameter PULSEWIDTH_BITS = 12,
-  parameter OUTPUT_BITS = 16,
-  parameter ACCUMULATOR_BITS = 24,
-  parameter FREQ_BITS = 16,
-  parameter AMPLITUDE_BITS = 8
-) (
+module voice (
     input wire clk,
     input wire enable,
     input wire [7:0] midi_data,
-    input wire [AMPLITUDE_BITS-1:0] amplitude,
+    input wire [7:0] amplitude,
     input wire [1:0] waveform_select,
-    input wire [PULSEWIDTH_BITS-1:0] pulse_width,
+    input wire [11:0] pulse_width,
     input wire [7:0] filter_alpha,
     input wire reverb_enable,
     input wire [7:0] reverb_alpha,
@@ -24,20 +18,20 @@ module voice #(
     input wire [3:0] adsr_d,
     input wire [3:0] adsr_s,
     input wire [3:0] adsr_r,
-    output wire [OUTPUT_BITS-1:0] dout
+    output wire [15:0] dout
 );
 
     `include "midi_note_to_tone_freq.v"
     wire [15:0] tone_freq;
     assign tone_freq = midi_note_to_tone_freq(midi_data) * 4;
 
-    wire [OUTPUT_BITS-1:0] tone_generator_dout;
+    wire [15:0] tone_generator_dout;
     tone_generator #(
-        .PULSEWIDTH_BITS(PULSEWIDTH_BITS),
-        .OUTPUT_BITS(OUTPUT_BITS),
-        .ACCUMULATOR_BITS(ACCUMULATOR_BITS),
-        .FREQ_BITS(FREQ_BITS),
-        .AMPLITUDE_BITS(AMPLITUDE_BITS)
+        // .PULSEWIDTH_BITS(PULSEWIDTH_BITS),
+        // .OUTPUT_BITS(OUTPUT_BITS),
+        // .ACCUMULATOR_BITS(ACCUMULATOR_BITS),
+        // .FREQ_BITS(FREQ_BITS),
+        // .AMPLITUDE_BITS(AMPLITUDE_BITS)
     ) tone(
         .clk(clk),
         .tone_freq(tone_freq),
@@ -61,10 +55,10 @@ module voice #(
     );
 
 
-    wire [OUTPUT_BITS-1:0] adsr_amp_dout;
+    wire [15:0] adsr_amp_dout;
     amplitude_downscaler #(
-        .DATA_BITS(OUTPUT_BITS),
-        .AMPLITUDE_BITS(8)
+        // .DATA_BITS(OUTPUT_BITS),
+        // .AMPLITUDE_BITS(8)
     ) adsr_amp(
         .din(tone_generator_dout),
         // .amplitude(amplitude),
@@ -72,19 +66,19 @@ module voice #(
         .dout(adsr_amp_dout)
     );
 
-    wire [OUTPUT_BITS-1:0] main_amp_dout;
+    wire [15:0] main_amp_dout;
     amplitude_downscaler #(
-        .DATA_BITS(OUTPUT_BITS),
-        .AMPLITUDE_BITS(8)
+        // .DATA_BITS(OUTPUT_BITS),
+        // .AMPLITUDE_BITS(8)
     ) main_amp(
         .din(adsr_amp_dout),
         .amplitude(amplitude),
         .dout(main_amp_dout)
     );
 
-    wire [OUTPUT_BITS-1:0] filter_dout;
+    wire [15:0] filter_dout;
     filter_ewma #(
-        .DATA_BITS(OUTPUT_BITS)
+        // .DATA_BITS(OUTPUT_BITS)
     ) filter(
         .clk(clk),
         .alpha(filter_alpha),
@@ -92,10 +86,10 @@ module voice #(
         .dout(filter_dout)
     );
 
-    wire [OUTPUT_BITS-1:0] reverb_dout;
+    wire [15:0] reverb_dout;
     simple_reverb #(
-        .DATA_BITS(OUTPUT_BITS),
-        .DELAY_LENGTH(2048)
+        // .DATA_BITS(OUTPUT_BITS),
+        // .DELAY_LENGTH(2048)
     ) reverb(
         .clk(clk),
         .enable(reverb_enable),
