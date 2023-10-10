@@ -1,4 +1,4 @@
-`include "voice.vh"
+`include "voice.v"
 
 module midi_player #(
   parameter FREQ_BITS = 16,

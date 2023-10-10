@@ -1,8 +1,8 @@
-`include "tone_generator.vh"
-`include "amplitude_downscaler.vh"
-`include "filter_ewma.vh"
-`include "adsr_generator.vh"
-`include "simple_reverb.vh" 
+`include "tone_generator.v"
+`include "amplitude_downscaler.v"
+`include "filter_ewma.v"
+`include "adsr_generator.v"
+`include "simple_reverb.v" 
 
 module voice #(
   parameter PULSEWIDTH_BITS = 12,
@@ -27,7 +27,7 @@ module voice #(
     output wire [OUTPUT_BITS-1:0] dout
 );
 
-    `include "midi_note_to_tone_freq.vh"
+    `include "midi_note_to_tone_freq.v"
     wire [15:0] tone_freq;
     assign tone_freq = midi_note_to_tone_freq(midi_data) * 4;
 
