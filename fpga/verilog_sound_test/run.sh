@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mkdir output
+
 # Compile the Verilog module and testbench
 iverilog -o output/midi_player_tb midi_player.v tb_midi_player.v
 
