@@ -1,6 +1,8 @@
 # Define minimal required version of CMake.
 cmake_minimum_required(VERSION "3.25")
 
+#run with cmake -DCMAKE_TOOLCHAIN_FILE:PATH="./toolchain.cmake" 
+
 # Project definition
 project(
 	GuitarZeroMCU
@@ -36,6 +38,8 @@ target_link_options(GuitarZeroMCU PUBLIC
 target_link_libraries(GuitarZeroMCU PRIVATE
     slc_GuitarZeroMCU
 )
+
+AUX_SOURCE_DIRECTORY(dir "../src")
 
 # Include managed project content if available
 include(GuitarZeroMCU_project.cmake OPTIONAL RESULT_VARIABLE managed_project)

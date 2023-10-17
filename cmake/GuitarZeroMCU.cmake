@@ -71,6 +71,7 @@ target_include_directories(slc_GuitarZeroMCU PUBLIC
     "${SDK_PATH}/platform/common/toolchain/inc"
     "${SDK_PATH}/platform/service/system/inc"
     "${SDK_PATH}/platform/service/sleeptimer/inc"
+    "${SDK_PATH}/platform/middleware/usb_gecko/inc"
 )
 
 target_compile_definitions(slc_GuitarZeroMCU PUBLIC

@@ -15,7 +15,7 @@ elseif(WIN32)
 elseif(APPLE)
   set(TOOLCHAIN_DIR "/bin/")
 else()
-  set(TOOLCHAIN_DIR "/bin/")
+  set(TOOLCHAIN_DIR "/usr/bin/")
 endif()
 
 if(DEFINED ENV{POST_BUILD_EXE})
