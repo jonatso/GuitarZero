@@ -5,7 +5,6 @@
  *      Author: StianJSulebak
  */
 
-#pragma once
 #include <stdio.h>
 #include "em_device.h"
 #include "redirect_printf.h"
