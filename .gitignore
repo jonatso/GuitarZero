@@ -1,1 +1,4 @@
 gecko_sdk
+cmake/build
+
+cmake/out

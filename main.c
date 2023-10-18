@@ -34,8 +34,6 @@
 #include <stdio.h>
 #include "em_cmu.h"
 
-
-
 /* src files */
 #include "src/usb_enum.h"
 #include "src/usb_hid.h"

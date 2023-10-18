@@ -15,7 +15,7 @@
  *
  ******************************************************************************/
 
-#include "debug_utils/redirect_printf.h"
+#include "src/debug_utils/redirect_printf.h"
 
 /***************************************************************************//**
  * Initialize application.
