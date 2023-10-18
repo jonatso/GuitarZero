@@ -1,7 +1,8 @@
 # Define minimal required version of CMake.
 cmake_minimum_required(VERSION "3.25")
 
-#run with cmake -DCMAKE_TOOLCHAIN_FILE:PATH="./toolchain.cmake" 
+
+include(toolchain.cmake)
 
 # Project definition
 project(
@@ -9,6 +10,7 @@ project(
 	VERSION 1.0
 	LANGUAGES C CXX ASM
 )
+
 
 # Include the definition of the slc_GuitarZeroMCU target,
 # which contains the content of the SLC project

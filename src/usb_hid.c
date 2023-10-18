@@ -9,7 +9,7 @@
 #include "em_device.h"
 #include "em_cmu.h"
 #include "em_usb.h"
-#include "src/usb_hid.h"
+#include "usb_hid.h"
 
 /* Timer indices. */
 #define KBD_LED_TIMER     0

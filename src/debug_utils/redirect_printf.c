@@ -8,6 +8,7 @@
 #pragma once
 #include <stdio.h>
 #include "em_device.h"
+#include "redirect_printf.h"
 
 
 #define ITM_Port32(n) (*((volatile unsigned int *)(0xE0000000+4*n)))

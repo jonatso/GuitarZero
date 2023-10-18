@@ -1,8 +1,4 @@
 gecko_sdk
-cmake/CMakeFiles
-cmake/CMakeCache.txt
-cmake/Makefile
-cmake/cmake_install.cmake
-cmake/Makefile
-cmake/Makefile
-cmake/cmake-3.27*
+cmake/build
+
+cmake/out

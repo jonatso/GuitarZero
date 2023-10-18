@@ -40,6 +40,13 @@ add_library(slc_GuitarZeroMCU OBJECT
     "${SDK_PATH}/platform/service/sleeptimer/src/sl_sleeptimer_hal_timer.c"
     "${SDK_PATH}/platform/service/system/src/sl_system_init.c"
     "${SDK_PATH}/platform/service/system/src/sl_system_process_action.c"
+
+    "${SDK_PATH}/platform/middleware/usb_gecko/src/em_usbh.c"
+    "${SDK_PATH}/platform/middleware/usb_gecko/src/em_usbhal.c"
+    "${SDK_PATH}/platform/middleware/usb_gecko/src/em_usbhep.c"
+    "${SDK_PATH}/platform/middleware/usb_gecko/src/em_usbhint.c"
+    "${SDK_PATH}/platform/middleware/usb_gecko/src/em_usbtimer.c"
+    
     "../app.c"
     "../autogen/sl_board_default_init.c"
     "../autogen/sl_device_init_clocks.c"
@@ -49,12 +56,17 @@ add_library(slc_GuitarZeroMCU OBJECT
     "../autogen/sl_simple_button_instances.c"
     "../autogen/sl_simple_led_instances.c"
     "../main.c"
-)
-
-target_include_directories(slc_GuitarZeroMCU PUBLIC
-   "../config"
-   "../autogen"
-   "../."
+    "../src/usb_hid.c"
+    "../src/usb_enum.c"
+    "../src/debug_utils/redirect_printf.c"
+    )
+    
+    target_include_directories(slc_GuitarZeroMCU PUBLIC
+    "../config"
+    "../autogen"
+    "../."
+    "../src/debug_utils"
+    "../src"
     "${SDK_PATH}/platform/Device/SiliconLabs/EFM32GG/Include"
     "${SDK_PATH}/platform/common/inc"
     "${SDK_PATH}/hardware/board/inc"
@@ -72,17 +84,17 @@ target_include_directories(slc_GuitarZeroMCU PUBLIC
     "${SDK_PATH}/platform/service/system/inc"
     "${SDK_PATH}/platform/service/sleeptimer/inc"
     "${SDK_PATH}/platform/middleware/usb_gecko/inc"
-)
-
-target_compile_definitions(slc_GuitarZeroMCU PUBLIC
+    )
+    
+    target_compile_definitions(slc_GuitarZeroMCU PUBLIC
     DEBUG_EFM=1
     EFM32GG990F1024=1
     SL_BOARD_NAME="BRD2200A"
     SL_BOARD_REV="B05"
     SL_COMPONENT_CATALOG_PRESENT=1
-)
-
-target_link_libraries(slc_GuitarZeroMCU PUBLIC
+    )
+    
+    target_link_libraries(slc_GuitarZeroMCU PUBLIC
     "-Wl,--start-group"
     "gcc"
     "c"
