@@ -22,7 +22,7 @@ module voice (
 );
 
     `include "midi_note_to_tone_freq.v"
-    wire [15:0] tone_freq;
+    wire [19:0] tone_freq;
     assign tone_freq = midi_note_to_tone_freq(midi_data) * 4;
 
     wire [15:0] tone_generator_dout;

@@ -1,13 +1,11 @@
 `include "voice.v"
 
-module midi_player 
+module instrument_1
 (
     input wire clk,
     input wire [7:0] midi_data,
     input wire midi_valid,
     input wire [7:0] amplitude,
-    input wire [1:0] waveform_select,
-    input wire [7:0] filter_alpha,
     output wire [15:0] sound_data
 );
 
@@ -17,10 +15,10 @@ module midi_player
         .midi_data(midi_data),
         .enable(midi_valid),
         .dout(sound_data),
-        .waveform_select(waveform_select),
+        .waveform_select(2'b01),
         .pulse_width(12'd2048),
         .amplitude(amplitude),
-        .filter_alpha(filter_alpha),
+        .filter_alpha(8'h10),
         .adsr_a(4'h9),
         .adsr_d(4'h9),
         .adsr_s(4'hC),

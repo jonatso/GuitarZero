@@ -5,7 +5,7 @@
 
 module tone_generator (
     input wire clk,
-    input wire [15:0] tone_freq,
+    input wire [19:0] tone_freq,
     input wire [7:0] amplitude,
     input wire [1:0] waveform_select,
     input wire [11:0] pulse_width,
