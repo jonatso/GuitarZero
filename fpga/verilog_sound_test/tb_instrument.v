@@ -25,7 +25,15 @@ module tb_instrument;
         .sound_data(sound_data)
     );
 
-    instrument_2 instr2 (
+    // instrument_2 instr2 (
+    //     .clk(clk),
+    //     .midi_data(midi_data2),
+    //     .midi_valid(midi_valid2),
+    //     .amplitude(amplitude2),
+    //     .sound_data(sound_data2)
+    // );
+
+        instrument_3 instr3 (
         .clk(clk),
         .midi_data(midi_data2),
         .midi_valid(midi_valid2),
@@ -33,8 +41,10 @@ module tb_instrument;
         .sound_data(sound_data2)
     );
 
+
+
     two_into_one_mixer mixer(
-        .a(sound_data),
+        .a(sound_data2),
         .b(sound_data2),
         .dout(sound_data_mix)
     );

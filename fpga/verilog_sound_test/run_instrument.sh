@@ -3,7 +3,7 @@
 mkdir output
 
 # Compile the Verilog module and testbench
-iverilog -o output/instrument_tb instrument_1.v instrument_2.v two_into_one_mixer.v tb_instrument.v
+iverilog -o output/instrument_tb instrument_1.v instrument_2.v instrument_3.v two_into_one_mixer.v tb_instrument.v
 
 # Run the simulation
 vvp output/instrument_tb
