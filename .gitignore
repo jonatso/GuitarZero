@@ -2,3 +2,4 @@ gecko_sdk
 cmake/build
 
 cmake/out
+cmake/firstPriceEnv.cmake

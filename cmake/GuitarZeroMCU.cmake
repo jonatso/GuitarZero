@@ -1,5 +1,4 @@
-set(SDK_PATH "/home/stianjsu/NTNU/datamaskin_prosjekt/Workspace-projects/SDKs/gecko_sdk")
-set(COPIED_SDK_PATH "gecko_sdk_4.3.1")
+include(firstPriceEnv.cmake)
 
 add_library(slc_GuitarZeroMCU OBJECT
     "${SDK_PATH}/hardware/board/src/sl_board_control_gpio.c"
