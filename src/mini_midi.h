@@ -11,6 +11,8 @@
 #define SRC_MINI_MIDI_H_
 #include <stdint.h>
 
+#define MAX_SIMUL_NOTES 8
+
 struct Note
 {
   uint8_t amplitude;
