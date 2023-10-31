@@ -64,10 +64,10 @@ int main(void)
     sl_system_init();
     app_init();
 
-    printf("Testing debug printf");
+    printf("Testing debug printf\n");
     char buffer[16] = "Hallo fra buff";
     int retval = spi_transfer_bytes(buffer, 16);
 
-    printf("retval: %d", retval);
+    printf("retval: %d\n", retval);
 ;
 }
