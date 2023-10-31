@@ -40,11 +40,20 @@ add_library(slc_GuitarZeroMCU OBJECT
     "${SDK_PATH}/platform/service/system/src/sl_system_init.c"
     "${SDK_PATH}/platform/service/system/src/sl_system_process_action.c"
 
+    # USB
     "${SDK_PATH}/platform/middleware/usb_gecko/src/em_usbh.c"
     "${SDK_PATH}/platform/middleware/usb_gecko/src/em_usbhal.c"
     "${SDK_PATH}/platform/middleware/usb_gecko/src/em_usbhep.c"
     "${SDK_PATH}/platform/middleware/usb_gecko/src/em_usbhint.c"
     "${SDK_PATH}/platform/middleware/usb_gecko/src/em_usbtimer.c"
+    
+    # SPI
+    "${SDK_PATH}/platform/emdrv/spidrv/src/spidrv.c"
+    "${SDK_PATH}/platform/emdrv/dmadrv/src/dmadrv.c"
+    "${SDK_PATH}/platform/emdrv/dmadrv/src/dmactrl.c"
+    "${SDK_PATH}/platform/emlib/src/em_dma.c"
+    "${SDK_PATH}/platform/emlib/src/em_usart.c"
+    "../src/spi/spi_interface.c"
     
     "../app.c"
     "../autogen/sl_board_default_init.c"
@@ -66,6 +75,7 @@ add_library(slc_GuitarZeroMCU OBJECT
     "../."
     "../src/debug_utils"
     "../src"
+    
     "${SDK_PATH}/platform/Device/SiliconLabs/EFM32GG/Include"
     "${SDK_PATH}/platform/common/inc"
     "${SDK_PATH}/hardware/board/inc"
@@ -82,7 +92,17 @@ add_library(slc_GuitarZeroMCU OBJECT
     "${SDK_PATH}/platform/common/toolchain/inc"
     "${SDK_PATH}/platform/service/system/inc"
     "${SDK_PATH}/platform/service/sleeptimer/inc"
+    
+    # USB
     "${SDK_PATH}/platform/middleware/usb_gecko/inc"
+    
+    #SPI
+    "${SDK_PATH}/platform/emdrv/spidrv/inc"
+    "${SDK_PATH}/platform/emdrv/spidrv/config"
+    "${SDK_PATH}/platform/emdrv/dmadrv/inc"
+    "${SDK_PATH}/platform/emdrv/dmadrv/config"
+    "../src/spi"
+    
     )
     
     target_compile_definitions(slc_GuitarZeroMCU PUBLIC

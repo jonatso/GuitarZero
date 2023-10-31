@@ -37,6 +37,7 @@
 /* src files */
 #include "src/usb_enum.h"
 #include "src/usb_hid.h"
+#include "src/spi/spi_interface.h"
 
 //*#include "SegmentLCD.h"
 
@@ -64,7 +65,9 @@ int main(void)
     app_init();
 
     printf("Testing debug printf");
-    usb_hid();
+    char buffer[16] = "Hallo fra buff";
+    int retval = spi_transfer_bytes(buffer, 16);
 
-    //usb_inum();
+    printf("retval: %d", retval);
+;
 }
