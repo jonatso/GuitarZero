@@ -63,11 +63,24 @@ int main(void)
     // this call.
     sl_system_init();
     app_init();
-
     printf("Testing debug printf\n");
-    char buffer[16] = "Hallo fra buff";
-    int retval = spi_transfer_bytes(buffer, 16);
 
-    printf("retval: %d\n", retval);
-;
+    unsigned long mask = 0;
+    unsigned long buffer = ~mask;
+    printf("spi buff: %ld", buffer);
+
+    while (1) {
+
+      // Do not remove this call: Silicon Labs components process action routine
+      // must be called from the super loop.
+      sl_system_process_action();
+
+
+      spi_transfer_bytes_blocking(&buffer, sizeof(long));
+      /*
+      // Application process.
+      app_process_action(); */
+
+    }
+    
 }
