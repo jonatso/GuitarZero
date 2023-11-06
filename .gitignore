@@ -3,3 +3,6 @@ cmake/build
 
 cmake/out
 cmake/firstPriceEnv.cmake
+
+# ide stuff
+.vscode

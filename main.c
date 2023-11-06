@@ -37,6 +37,7 @@
 /* src files */
 #include "src/usb_enum.h"
 #include "src/usb_hid.h"
+#include "src/spi/spi_interface.h"
 
 //*#include "SegmentLCD.h"
 
@@ -62,9 +63,24 @@ int main(void)
     // this call.
     sl_system_init();
     app_init();
+    printf("Testing debug printf\n");
 
-    printf("Testing debug printf");
-    usb_hid();
+    unsigned long mask = 0;
+    unsigned long buffer = ~mask;
+    printf("spi buff: %ld", buffer);
 
-    //usb_inum();
+    while (1) {
+
+      // Do not remove this call: Silicon Labs components process action routine
+      // must be called from the super loop.
+      sl_system_process_action();
+
+
+      spi_transfer_bytes_blocking(&buffer, sizeof(long));
+      /*
+      // Application process.
+      app_process_action(); */
+
+    }
+    
 }
