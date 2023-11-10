@@ -29,6 +29,7 @@ void app_init(void)
   SWO_Setup_config();
   spi_init_to_FPGA();
   init_fpga_test();
+  printf("Ready to test\n");
 }
 
 /***************************************************************************/
