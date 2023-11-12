@@ -11,7 +11,7 @@
 #define SRC_MINI_MIDI_H_
 #include <stdint.h>
 
-#define MAX_SIMUL_NOTES 8
+#define MAX_SIMUL_NOTES 5
 
 struct Note
 {
@@ -47,6 +47,6 @@ int progress_in_sixteenths(song_t song, int progress_in_milliseconds);
 
 sixteenth_t *get_sixteenth(song_t song, int progress_in_sixteenths);
 
-void get_notes(song_t song, int progress_in_sixteenths, note_t *note_array);
+void get_notes(song_t song, int progress_in_sixteenths, note_t **note_array);
 
 #endif /* SRC_MINI_MIDI_H_ */
