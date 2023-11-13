@@ -71,6 +71,7 @@ add_library(slc_GuitarZeroMCU OBJECT
     "../src/timer.c"
     "../src/mini_midi.c"
     "../src/mini_midi_transfer.c"
+    "../src/led_matrix.c"
     )
     
     target_include_directories(slc_GuitarZeroMCU PUBLIC
@@ -116,6 +117,12 @@ add_library(slc_GuitarZeroMCU OBJECT
     SL_BOARD_REV="B05"
     SL_COMPONENT_CATALOG_PRESENT=1
     )
+
+    # target_compile_definitions(slc_GuitarZeroMCU PUBLIC
+    # DEBUG_EFM=1
+    # EFM32GG332F1024=1
+    # SL_COMPONENT_CATALOG_PRESENT=1
+    # )
     
     target_link_libraries(slc_GuitarZeroMCU PUBLIC
     "-Wl,--start-group"
