@@ -8,6 +8,7 @@ Ecode_t spi_init_to_FPGA(void)
 {
   SPIDRV_Init_t initData = SPIDRV_MASTER_USART1;
   initData.frameLength = 16;
+  // initData.bitOrder = spidrvBitOrderMsbFirst;
   return SPIDRV_Init(spi_handle, &initData);
 }
 

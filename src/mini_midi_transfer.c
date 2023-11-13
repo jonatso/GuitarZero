@@ -13,7 +13,7 @@ note_t *note_array[MAX_SIMUL_NOTES];
 void send_notes(song_t song, int progress_in_milliseconds)
 {
   uint16_t buffer[MAX_SIMUL_NOTES];
-  int progress_sixteenths = 12; // progress_in_sixteenths(song, progress_in_milliseconds);
+  int progress_sixteenths = progress_in_sixteenths(song, progress_in_milliseconds);
 
   uint8_t number_of_notes = get_sixteenth(song, progress_sixteenths)->number_of_notes;
   get_notes(song, progress_sixteenths, note_array);
@@ -38,7 +38,7 @@ void send_notes(song_t song, int progress_in_milliseconds)
     uint16_t instrument = (0b111 & note_array[i]->instrument);
 
     buffer[i] = (note << 9) | (amplitude << 3) | instrument;
-    buffer[i] = 0b1111111111111111;
+    // buffer[i] = 0b1111111111111111;
     printf("To send: %d\n", buffer[i]);
     // Transmit data using a callback to catch transfer completion.
 
