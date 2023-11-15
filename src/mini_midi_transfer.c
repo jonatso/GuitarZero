@@ -14,6 +14,16 @@ void send_notes(song_t song, int progress_in_milliseconds)
 {
   uint16_t buffer[MAX_SIMUL_NOTES];
   int progress_sixteenths = progress_in_sixteenths(song, progress_in_milliseconds);
+  if (progress_sixteenths > song.length_in_measures * 16)
+  {
+    printf("No notes\n");
+    for (int i = 0; i < MAX_SIMUL_NOTES; i++)
+    {
+      buffer[i] = 0;
+      spi_transfer_bytes_blocking(&(buffer[i]), 1);
+      return;
+    }
+  }
 
   uint8_t number_of_notes = get_sixteenth(song, progress_sixteenths)->number_of_notes;
   get_notes(song, progress_sixteenths, note_array);
