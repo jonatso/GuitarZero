@@ -37,6 +37,7 @@ void app_init(void)
   SWO_Setup_config();
   //CHIP_Init();
   //CMU_ClockEnable(cmuClock_GPIO, true);
+  initLEDMatrix();
   spi_init_to_FPGA();
   init_fpga_test();
   // GPIO_PinModeSet(gpioPortD, 6, gpioModePushPull, 1);
