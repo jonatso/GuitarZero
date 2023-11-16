@@ -32,6 +32,11 @@
  * as a demonstration for evaluation purposes only. This code will be maintained
  * at the sole discretion of Silicon Labs.
  ******************************************************************************/
+#define _IGNORE_SL_SDC_PLATFORM  
+
+#ifndef _IGNORE_SL_SDC_PLATFORM   
+
+
 #include "imports/sl_sdc_platform_spi.h"
 
 static sl_sleeptimer_timer_handle_t disk_timerproc_timer_handle;
@@ -130,3 +135,6 @@ static void disk_timerproc_timer_callback(sl_sleeptimer_timer_handle_t *handle,
 
   disk_timerproc();
 }
+
+
+#endif //_IGNORE_SL_SDC_PLATFORM  

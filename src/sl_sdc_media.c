@@ -32,6 +32,11 @@
  * as a demonstration for evaluation purposes only. This code will be maintained
  * at the sole discretion of Silicon Labs.
  ******************************************************************************/
+
+#define _IGNORE_SL_SDC_MEDIA 
+
+#ifndef _IGNORE_SL_SDC_MEDIA  
+
 #include "imports/ff.h"
 #include "imports/diskio.h"
 #include "imports/sl_sdc_sd_card.h"
@@ -159,3 +164,6 @@ DWORD get_fattime(void)
          | ((DWORD)date_time.sec >> 1);
 }
 #endif
+
+
+#endif //_IGNORE_SL_SDC_MEDIA 
