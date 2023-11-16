@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "timer.h"
 
-RTC_Init_TypeDef rtcInit = RTC_INIT_DEFAULT;
+RTC_Init_TypeDef rtcInit = {1, 0, 0}; //RTC_INIT_DEFAULT;
 
 void init_timer()
 {
