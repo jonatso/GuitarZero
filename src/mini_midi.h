@@ -32,6 +32,7 @@ typedef struct Sixteenth sixteenth_t;
 
 struct Song
 {
+  char *name;
   uint8_t bpm;
   uint8_t length_in_measures; // A measure is 16 sixteenths
   uint16_t number_of_unique_sixteenths;
