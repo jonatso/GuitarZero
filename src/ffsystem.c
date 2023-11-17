@@ -3,6 +3,9 @@
 /* (C)ChaN, 2018                                                          */
 /*------------------------------------------------------------------------*/
 
+#define _IGNORE_FFSYSTEM
+
+#ifndef _IGNORE_FFSYSTEM 
 
 #include "imports/sl_sdc_platform_spi.h"
 
@@ -168,3 +171,4 @@ void ff_rel_grant (
 
 #endif
 
+#endif // _IGNORE_FFSYSTEM

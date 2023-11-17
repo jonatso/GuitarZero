@@ -32,6 +32,10 @@
  * as a demonstration for evaluation purposes only. This code will be maintained
  * at the sole discretion of Silicon Labs.
  ******************************************************************************/
+#define _IGNORE_SL_SDC_SD_CARD   
+
+#ifndef _IGNORE_SL_SDC_SD_CARD    
+
 #include "imports/sl_sdc_sd_card.h"
 
 // Definitions for MMC/SDC command
@@ -618,3 +622,6 @@ void disk_timerproc(void)
   }
   sd_card_status = s;
 }
+
+
+#endif //_IGNORE_SL_SDC_SD_CARD   

@@ -70,7 +70,7 @@ def midiToIR(filename: str):
         if msg.type == "set_tempo":
             bpm = tempo2bpm(msg.tempo)
 
-    for i, track in enumerate(mid.tracks[1:]):
+    for i, track in enumerate(mid.tracks):
         try:
             # The track name decides the instrument. "Player" is special, as it decides what notes should be played by the person playing
             if track.name == "Player":

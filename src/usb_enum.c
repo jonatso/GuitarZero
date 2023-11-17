@@ -38,7 +38,7 @@
 #include "em_device.h"
 #include "em_cmu.h"
 #include "em_usb.h"
-#include "src/usb_enum.h"
+#include "usb_enum.h"
 //*#include "SegmentLCD.h"
 
 /**************************************************************************//**

@@ -22,6 +22,9 @@
 / by use of this software.
 */
 
+#define _IGNORE_FFUNICODE 
+
+#ifndef _IGNORE_FFUNICODE 
 
 #include "imports/ff.h"
 
@@ -15591,3 +15594,5 @@ DWORD ff_wtoupper (	/* Returns up-converted code point */
 
 
 #endif /* #if FF_USE_LFN */
+
+#endif // _IGNORE_FFUNICODE 

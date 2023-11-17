@@ -1,3 +1,7 @@
+#define _IGNORE_SD_EXAMPLE 
+
+#ifndef _IGNORE_SD_EXAMPLE  
+
 #include "imports/diskio.h"
 #include "imports/ff.h"
 
@@ -93,3 +97,5 @@ FATFS fs;
     ret_code = f_close(&fil);
     // Unmount SDCARD
     (void)f_mount(NULL, "", 1);}
+
+#endif // _IGNORE_SD_EXAMPLE 

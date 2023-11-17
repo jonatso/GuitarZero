@@ -3,6 +3,7 @@
 
 void render_level(song_t song, int progress_in_sixteenths, int display_width, int display_height, int **frame)
 {
+    clearPixels();
     for (int i = 0; i < display_width; i++)
     {
         int progress = progress_in_sixteenths + i;
@@ -19,8 +20,10 @@ void render_level(song_t song, int progress_in_sixteenths, int display_width, in
             int row_to_display_on = note->user_played;
             if (row_to_display_on)
             {
-                frame[row_to_display_on][i] = LED_MATRIX_PIXEL_ON;
+                //frame[row_to_display_on][i] = LED_MATRIX_PIXEL_ON;
+                setPixel(i, row_to_display_on, LED_MATRIX_PIXEL_ON);
             }
         }
     }
+    displayPixels();
 }

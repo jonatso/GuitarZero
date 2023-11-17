@@ -18,6 +18,9 @@
 /
 /----------------------------------------------------------------------------*/
 
+#define _IGNORE_FF 
+
+#ifndef _IGNORE_FF 
 
 #include <string.h>
 #include "imports/ff.h"			/* Declarations of FatFs API */
@@ -7082,3 +7085,4 @@ FRESULT f_setcp (
 }
 #endif	/* FF_CODE_PAGE == 0 */
 
+#endif // _IGNORE_FF 
