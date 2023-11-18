@@ -39,7 +39,7 @@ void app_init(void) {
   initLEDMatrix();
   spi_init_to_FPGA();
   init_radio();
-  play_song(1);
+  play_song(3);
 }
 
 /***************************************************************************/
