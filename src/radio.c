@@ -1,11 +1,12 @@
 #include "radio.h"
 #include "all_star.h"
+#include "megalovania.h"
 #include "mini_midi.h"
 #include "mini_midi_transfer.h"
 #include "speaker_test_2.h"
 #include "timer.h"
 
-song_t *songs[] = {&all_star_song, &speaker_test_2_song};
+song_t *songs[] = {&all_star_song, &speaker_test_2_song, &megalovania_song};
 int song_count = 1;
 int playing = 0;
 int active_song_index = 0;
