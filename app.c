@@ -31,7 +31,6 @@
 /**
  * Initialize application.
  ******************************************************************************/
-int **rendered_text;
 void app_init(void) {
   SWO_Setup_config();
   // CHIP_Init();
@@ -40,10 +39,18 @@ void app_init(void) {
   spi_init_to_FPGA();
   init_radio();
   play_song(3);
+  set_text("GUITAR ZERO");
 }
 
 /***************************************************************************/
 /**
  * App ticking function.
  ******************************************************************************/
-void app_process_action(void) { progress_radio(); }
+void app_process_action(void) {
+  progress_radio();
+  draw_text();
+  for (int i = 0; i < 10; i++) {
+
+    displayPixels();
+  }
+}

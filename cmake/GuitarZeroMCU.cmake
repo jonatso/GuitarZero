@@ -67,11 +67,12 @@ add_library(slc_GuitarZeroMCU OBJECT
     "../src/usb_hid.c"
     "../src/usb_enum.c"
     "../src/debug_utils/redirect_printf.c"
-    "../src/fpga_test.c"
     "../src/timer.c"
     "../src/mini_midi.c"
     "../src/mini_midi_transfer.c"
     "../src/led_matrix.c"
+    "../src/text_render.c"
+    "../src/radio.c"
     )
     
     target_include_directories(slc_GuitarZeroMCU PUBLIC
