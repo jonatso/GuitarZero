@@ -58,6 +58,7 @@ void reorder_note_array(note_t **note_array, note_t **prev_notes, int *included,
 }
 
 void send_notes(song_t song, int progress_in_milliseconds) {
+  printf("----------");
   uint16_t buffer[MAX_SIMUL_NOTES];
   int progress_sixteenths =
       progress_in_sixteenths(song, progress_in_milliseconds);
@@ -83,9 +84,11 @@ void send_notes(song_t song, int progress_in_milliseconds) {
   // Fill buffer
   for (int i = 0; i < MAX_SIMUL_NOTES; i++) {
     // If there is no note, set fields to 0 (except amplitude)
-    if (i >= number_of_notes || note_array[i]->instrument == 0) {
+    if (note_array[i] == 0) {
       uint16_t amplitude_mask = 0b0000000111111000;
       buffer[i] = buffer[i] & amplitude_mask;
+      printf("empty");
+      spi_transfer_bytes_blocking(&(buffer[i]), 1);
       continue;
     }
     printf("Tone: %d\n", note_array[i]->tone);
