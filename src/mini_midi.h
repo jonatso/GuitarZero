@@ -34,7 +34,7 @@ struct Song
 {
   char *name;
   uint8_t bpm;
-  uint8_t length_in_measures; // A measure is 16 sixteenths
+  uint16_t length_in_measures; // A measure is 16 sixteenths
   uint16_t number_of_unique_sixteenths;
   uint16_t number_of_unique_notes;
   uint16_t *sixteenth_indexes; // We save a lot of space if we are able to cut this to a uint8_t, and only use 256 unique sixteenths

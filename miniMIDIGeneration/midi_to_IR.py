@@ -199,6 +199,7 @@ def IRToHeader(song: Song, filename: str):
     out.add(",".join(map(str, song.sixteenth_indexes)))
     out.addLn("};")
     out.addLn(f"song_t {prefix}_song = {'{'}")
+    out.addLn(f'  "{song.name}",')
     out.addLn(f"  {song.bpm},")
     out.addLn(f"  {song.length_in_measures},")
     out.addLn(f"  {song.number_of_unique_sixteenths},")
