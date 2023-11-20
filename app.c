@@ -26,6 +26,7 @@
 #include "src/radio.h"
 #include "src/spi/spi_interface.h"
 #include "src/text_render.h"
+#include "src/buttons.h"
 
 /***************************************************************************/
 /**
@@ -35,6 +36,7 @@ void app_init(void) {
   SWO_Setup_config();
   // CHIP_Init();
   // CMU_ClockEnable(cmuClock_GPIO, true);
+  initButtons();
   initLEDMatrix();
   spi_init_to_FPGA();
   init_radio();
@@ -48,7 +50,29 @@ void app_init(void) {
  ******************************************************************************/
 void app_process_action(void) {
   progress_radio();
-  draw_text();
+  //draw_text();
+  if(buttonPressed(1)){
+      play_song(0);
+      setPixel(0,4,1);
+  }
+  if(buttonPressed(2)){
+      play_song(1);
+      setPixel(0,3,1);
+  }
+  if(buttonPressed(3)){
+      play_song(2);
+      setPixel(0,2,1);
+  }
+  if(buttonPressed(4)){
+      play_song(3);
+      setPixel(0,1,1);
+  }
+  if(buttonPressed(5)){
+      setPixel(0,0,1);
+  }
+  if(buttonPressed(6)){
+      clearPixels();
+  }
   for (int i = 0; i < 10; i++) {
 
     displayPixels();
