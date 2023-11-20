@@ -69,8 +69,8 @@ void send_notes(song_t song, int progress_in_milliseconds) {
     for (int i = 0; i < MAX_SIMUL_NOTES; i++) {
       buffer[i] = 0;
       spi_transfer_bytes_blocking(&(buffer[i]), 1);
-      return;
     }
+    return;
   }
 
   // Get notes
@@ -110,4 +110,12 @@ void send_notes(song_t song, int progress_in_milliseconds) {
     // (So inputting 2 sends 4)??
     spi_transfer_bytes_blocking(&(buffer[i]), 1);
   }
+}
+
+void send_empty(){
+  uint16_t buffer[MAX_SIMUL_NOTES];
+  for (int i = 0; i < MAX_SIMUL_NOTES; i++) {
+        buffer[i] = 0;
+        spi_transfer_bytes_blocking(&(buffer[i]), 1);
+      }
 }

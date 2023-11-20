@@ -4,6 +4,7 @@
 #include "radio.h"
 #include "buttons.h"
 #include "text_render.h"
+#include "mini_midi_transfer.h"
 
 void delay(int count) {
     for (volatile int i = 0; i < count; i++) {
@@ -24,6 +25,7 @@ void progress_scene() {
       if (buttonPressed(6)){
           delay(1000000);
           setScene(MENU);
+          send_empty();
       }
 
       break;
@@ -42,6 +44,7 @@ void progress_scene() {
           delay(1000000);
           play_song(get_current_index());
           setScene(LEVEL);
+
       }
       break;
   }
