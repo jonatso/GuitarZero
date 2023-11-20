@@ -15,7 +15,6 @@
  * sections of the MSLA applicable to Source Code.
  *
  ******************************************************************************/
-
 #include "app.h"
 #include "em_chip.h"
 #include "em_cmu.h"
@@ -23,7 +22,9 @@
 #include "em_gpio.h"
 #include "src/debug_utils/redirect_printf.h"
 #include "src/led_matrix.h"
+#include "src/menu.h"
 #include "src/radio.h"
+#include "src/scene_manager.h"
 #include "src/spi/spi_interface.h"
 #include "src/text_render.h"
 
@@ -36,9 +37,9 @@ void app_init(void) {
   // CHIP_Init();
   // CMU_ClockEnable(cmuClock_GPIO, true);
   initLEDMatrix();
+  init_menu();
   spi_init_to_FPGA();
   init_radio();
-  play_song(3);
   set_text("GUITAR ZERO");
 }
 
@@ -47,10 +48,8 @@ void app_init(void) {
  * App ticking function.
  ******************************************************************************/
 void app_process_action(void) {
-  progress_radio();
-  draw_text();
+  progress_scene();
   for (int i = 0; i < 10; i++) {
-
     displayPixels();
   }
 }
