@@ -1,15 +1,9 @@
-int 
-  button1 = 0,
-  button2 = 0,
-  button3 = 0,
-  button4 = 0,
-  button5 = 0,
-  button6 = 0;
+#ifndef CONTROLS_H
 
-int *button_values[] = {&button1, &button2, &button3, &button4, &button5};
+#define CONTROLS_H
 
-int is_fail_state = 0;
 
+int get_fail_state();
 
 void read_button_inputs();
 
@@ -19,3 +13,6 @@ void reset_inputs_after_sixteenth();
  * Sets is_failed_state according to played notes in this sixteenth
 */
 void check_played_notes(int *sixteenth_notes);
+
+
+#endif // CONTROLS_H
