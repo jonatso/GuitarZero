@@ -10,11 +10,13 @@ class Note:
         instrument: int,
         tone: int,
         user_played: int,
+        lead: bool,
     ):
         self.amplitude = amplitude
         self.instrument = instrument
         self.tone = tone
         self.user_played = user_played
+        self.lead = lead
 
 
 class Sixteenth:
@@ -70,13 +72,17 @@ def midiToIR(filename: str, name: str):
     # First track is control track
     for msg in mid.tracks[0]:
         if msg.type == "set_tempo":
-            bpm = tempo2bpm(msg.tempo)
+            bpm = round(tempo2bpm(msg.tempo))
 
     for i, track in enumerate(mid.tracks):
+        lead = False
         try:
             # The track name decides the instrument. "Player" is special, as it decides what notes should be played by the person playing
             if track.name == "Player":
                 instrument = 0
+            elif track.name.startswith("l"):
+                lead = True
+                instrument = int(track.name[1:])
             else:
                 instrument = int(track.name)
         except ValueError:
@@ -107,12 +113,19 @@ def midiToIR(filename: str, name: str):
                             msg.velocity,
                             instrument,
                             msg.note,
-                            0 if instrument > 0 else msg.note % 5,
+                            0 if instrument > 0 else (msg.note % 5 + 1),
+                            lead,
                         )
                     )
                     note_indexes[note_data] = len(notes) - 1
-                notes_currently_playing[note_indexes[note_data]] = nearest_sixteenth
-            elif msg.type == "note_off":
+                # Notes played by the user are cut down to one sixteenth
+                if instrument > 0:
+                    notes_currently_playing[note_indexes[note_data]] = nearest_sixteenth
+                else:
+                    note_play_times.append(
+                        (len(notes) - 1, nearest_sixteenth, nearest_sixteenth + 1)
+                    )
+            elif msg.type == "note_off" and instrument > 0:
                 # End note
                 note_index = note_indexes[note_data]
 
@@ -163,7 +176,8 @@ def IRToHeader(song: Song, filename: str):
 
     out = Out()
 
-    out.addLn('#include "mini_midi.h" \n')
+    out.addLn('#include "mini_midi.h"')
+    out.addLn("#include <stdbool.h>\n")
     out.addLn("// Notes")
 
     for i, note in enumerate(song.unique_notes):
@@ -171,7 +185,8 @@ def IRToHeader(song: Song, filename: str):
         out.addLn(f"  {note.amplitude},")
         out.addLn(f"  {note.instrument},")
         out.addLn(f"  {note.tone},")
-        out.addLn(f"  {note.user_played}")
+        out.addLn(f"  {note.user_played},")
+        out.addLn(f"  {'true' if note.lead else 'false'}")
         out.addLn("};")
 
     out.add(f"note_t* {prefix}_unique_notes[] = {'{'}")
