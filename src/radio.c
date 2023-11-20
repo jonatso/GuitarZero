@@ -23,11 +23,26 @@ void play_song(int index) {
   start_time = get_time_in_milliseconds();
 }
 
+song_t get_song() { return *songs[active_song_index]; }
+
 void stop() { playing = 0; }
+
+int get_song_progress_milliseconds() {
+  return get_time_in_milliseconds() - start_time;
+}
+int get_song_progress_sixteenths() {
+
+  return progress_in_sixteenths(*songs[active_song_index],
+                                get_song_progress_milliseconds());
+}
 
 void progress_radio() {
   if (playing == 1) {
-    int current_time = get_time_in_milliseconds() - start_time;
+    int current_time = get_song_progress_milliseconds();
     send_notes(*songs[active_song_index], current_time);
   }
+}
+
+int get_song_num(){
+  return sizeof(songs)/sizeof(songs[0]);
 }

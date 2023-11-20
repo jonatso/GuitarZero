@@ -73,6 +73,8 @@ add_library(slc_GuitarZeroMCU OBJECT
     "../src/led_matrix.c"
     "../src/text_render.c"
     "../src/radio.c"
+    "../src/scene_manager.c"
+    "../src/menu.c"
     )
     
     target_include_directories(slc_GuitarZeroMCU PUBLIC
