@@ -42,3 +42,7 @@ void progress_radio() {
     send_notes(*songs[active_song_index], current_time);
   }
 }
+
+int get_song_num(){
+  return sizeof(songs)/sizeof(songs[0]);
+}

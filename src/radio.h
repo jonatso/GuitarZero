@@ -12,4 +12,6 @@ song_t get_song();
 
 void progress_radio();
 
+int get_song_num();
+
 #endif

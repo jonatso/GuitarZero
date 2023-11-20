@@ -29,7 +29,7 @@ sixteenth_t* speaker_test_2_unique_sixteenths[] = {&speaker_test_2_sixteenth0};
 // Song
 uint16_t speaker_test_2_sixteenth_indexes[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 song_t speaker_test_2_song = {
-  "Speaker Test 2",
+  "SPEAKER TEST 2",
   108.000108000108,
   7,
   1,
