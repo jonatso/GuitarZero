@@ -10,6 +10,7 @@
 #ifndef SRC_MINI_MIDI_H_
 #define SRC_MINI_MIDI_H_
 #include <stdint.h>
+#include <stdbool.h>
 
 #define MAX_SIMUL_NOTES 8
 
@@ -19,6 +20,7 @@ struct Note
   uint8_t instrument; // Can probably be optimized to use 3-4 bits, but for now it's not worth the effort
   uint8_t tone;
   uint8_t user_played;
+  bool lead; // If true, the note will not play on a fail streak
 };
 typedef struct Note note_t;
 
