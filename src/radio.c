@@ -1,16 +1,12 @@
 #include "radio.h"
-//#include "all_star.h"
-//#include "megalovania.h"
+#include "eye_of_the_tiger.h"
 #include "mini_midi.h"
 #include "mini_midi_transfer.h"
-//#include "speaker_test_2.h"
-//#include "through_the_fire_and_flames.h"
 #include "timer.h"
 #include "controls.h"
 #include "eye_of_the_tiger.h"
 
 song_t *songs[] = {&eye_of_the_tiger_song};
-int song_count = 1;
 int playing = 0;
 int active_song_index = 0;
 int start_time = 0;
@@ -18,7 +14,8 @@ int start_time = 0;
 char *get_song_name(int index) { return songs[index]->name; }
 void init_radio() { init_timer(); }
 
-void play_song(int index) {
+void play_song(int index)
+{
   playing = 1;
   active_song_index = index;
   start_time = get_time_in_milliseconds();
@@ -28,10 +25,12 @@ song_t get_song() { return *songs[active_song_index]; }
 
 void stop() { playing = 0; }
 
-int get_song_progress_milliseconds() {
+int get_song_progress_milliseconds()
+{
   return get_time_in_milliseconds() - start_time;
 }
-int get_song_progress_sixteenths() {
+int get_song_progress_sixteenths()
+{
 
   return progress_in_sixteenths(*songs[active_song_index],
                                 get_song_progress_milliseconds());
@@ -39,8 +38,10 @@ int get_song_progress_sixteenths() {
 
 int prev_sixteenth = 0;
 int notes_to_play[5];
-void progress_radio(int use_player_inputs) {
-  if (playing == 1) {
+void progress_radio(int use_player_inputs)
+{
+  if (playing == 1)
+  {
     int current_time = get_song_progress_milliseconds();
     int curr_sixteenth = get_song_progress_sixteenths();
 
@@ -58,11 +59,11 @@ void progress_radio(int use_player_inputs) {
       }
     }
 
-
     send_notes(get_song(), current_time, !get_fail_state() || !use_player_inputs);
   }
 }
 
-int get_song_num(){
-  return sizeof(songs)/sizeof(songs[0]);
+int get_song_num()
+{
+  return sizeof(songs) / sizeof(songs[0]);
 }
