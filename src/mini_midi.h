@@ -52,4 +52,6 @@ sixteenth_t *get_sixteenth(song_t song, int progress_in_sixteenths);
 
 void get_notes(song_t song, int progress_in_sixteenths, note_t **note_array);
 
+void get_notes_to_play(song_t song, int progress_in_sixteenths, int* note_list);
+
 #endif /* SRC_MINI_MIDI_H_ */

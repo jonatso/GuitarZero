@@ -57,7 +57,7 @@ void reorder_note_array(note_t **note_array, note_t **prev_notes, int *included,
   }
 }
 
-void send_notes(song_t song, int progress_in_milliseconds) {
+void send_notes(song_t song, int progress_in_milliseconds, int play_lead) {
   printf("----------");
   uint16_t buffer[MAX_SIMUL_NOTES];
   int progress_sixteenths =
@@ -83,8 +83,9 @@ void send_notes(song_t song, int progress_in_milliseconds) {
 
   // Fill buffer
   for (int i = 0; i < MAX_SIMUL_NOTES; i++) {
-    // If there is no note, set fields to 0 (except amplitude)
-    if (note_array[i] == 0) {
+    // If there is no note or is lead note that should not be played,
+    // set fields to 0 (except amplitude)
+    if (note_array[i] == 0 || (!play_lead && note_array[i]->lead)) {
       uint16_t amplitude_mask = 0b0000000111111000;
       buffer[i] = buffer[i] & amplitude_mask;
       printf("empty");

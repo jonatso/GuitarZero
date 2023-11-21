@@ -1,14 +1,15 @@
 #include "radio.h"
-#include "all_star.h"
-#include "megalovania.h"
+//#include "all_star.h"
+//#include "megalovania.h"
 #include "mini_midi.h"
 #include "mini_midi_transfer.h"
-#include "speaker_test_2.h"
-#include "through_the_fire_and_flames.h"
+//#include "speaker_test_2.h"
+//#include "through_the_fire_and_flames.h"
 #include "timer.h"
+#include "controls.h"
+#include "eye_of_the_tiger.h"
 
-song_t *songs[] = {&all_star_song, &speaker_test_2_song, &megalovania_song,
-                   &through_the_fire_and_flames_song};
+song_t *songs[] = {&eye_of_the_tiger_song};
 int song_count = 1;
 int playing = 0;
 int active_song_index = 0;
@@ -36,10 +37,25 @@ int get_song_progress_sixteenths() {
                                 get_song_progress_milliseconds());
 }
 
+int prev_sixteenth = 0;
+int notes_to_play[5];
 void progress_radio() {
   if (playing == 1) {
     int current_time = get_song_progress_milliseconds();
-    send_notes(*songs[active_song_index], current_time);
+    int curr_sixteenth = get_song_progress_sixteenths();
+
+    read_button_inputs();
+
+    // only update game-state when moving from one 16th to the next
+    if (prev_sixteenth != curr_sixteenth)
+    {
+      get_notes_to_play(get_song(), curr_sixteenth, notes_to_play);
+      check_played_notes(notes_to_play); // sets is_fail_state
+      reset_inputs_after_sixteenth();
+      prev_sixteenth = curr_sixteenth;
+    }
+
+    send_notes(get_song(), current_time, !get_fail_state());
   }
 }
 
