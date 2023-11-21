@@ -7,12 +7,13 @@
 #include "mini_midi.h"
 #include "mini_midi_transfer.h"
 #include "supermario.h"
+#include "crockett.h"
 //#include "through_the_fire_and_flames.h" This too big, it breaks
 #include "timer.h"
 
 song_t *songs[] = {&eye_of_the_tiger_song,   &bjornen_sover_song,
                    &kickstart_my_heart_song, &super_mario_song,
-                   &megalovania_song};
+                   &megalovania_song, &crocetts_theme_song};
 
 int playing = 0;
 int active_song_index = 0;
