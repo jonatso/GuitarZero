@@ -1,6 +1,9 @@
 #ifndef RADIO
 #define RADIO
 #include "mini_midi.h"
+
+#define SONG_COUNT 3
+
 char *get_song_name(int index);
 void init_radio();
 
