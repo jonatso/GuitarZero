@@ -14,5 +14,7 @@ void reset_inputs_after_sixteenth();
 */
 void check_played_notes(int *sixteenth_notes);
 
+int** get_button_array();
+
 
 #endif // CONTROLS_H

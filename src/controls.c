@@ -22,7 +22,7 @@ int get_fail_state()
 void read_button_inputs()
 {
   for (int i = 0; i < 5; i++)
-    *(button_values[i]) |= buttonPressed(i+1);
+      *(button_values[i]) |= buttonPressed(i+1);
 }
 
 void reset_inputs_after_sixteenth()
@@ -55,6 +55,11 @@ void check_played_notes(int* sixteenth_notes)
         is_fail_state = 0;
     }
   }
+}
+
+int** get_button_array()
+{
+  return button_values;
 }
 
 
