@@ -22,7 +22,7 @@ void progress_scene() {
       progress_radio(1);
       render_level(get_song(), get_song_progress_sixteenths());
 
-      if (buttonPressed(6)){
+      if (buttonPressed(6) || is_end_of_song()){
           delay(1000000);
           setScene(MENU);
           stop();

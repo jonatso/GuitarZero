@@ -39,10 +39,15 @@ int get_song_progress_sixteenths() {
   return progress_in_sixteenths(*songs[active_song_index],
                                 get_song_progress_milliseconds());
 }
+int is_end_of_song()
+{
+  return get_song_progress_sixteenths() >= get_song().length_in_measures * 16;
+}
 
 int prev_sixteenth = 0;
 int notes_to_play[5];
 void progress_radio(int use_player_inputs) {
+  if (is_end_of_song()) stop();
   if (playing == 1) {
     int current_time = get_song_progress_milliseconds();
     int curr_sixteenth = get_song_progress_sixteenths();
