@@ -1,7 +1,9 @@
 #include "radio.h"
 #include "bjornen_sover.h"
+#include "controls.h"
 #include "eye_of_the_tiger.h"
 #include "kickstart_my_heart.h"
+#include "megalovania.h"
 #include "mini_midi.h"
 #include "mini_midi_transfer.h"
 #include "timer.h"
@@ -9,7 +11,8 @@
 #include "supermario.h"
 
 song_t *songs[] = {&eye_of_the_tiger_song, &bjornen_sover_song,
-                   &kickstart_my_heart_song, &super_mario_song};
+                   &kickstart_my_heart_song, &super_mario_song, &megalovania_song};
+
 int playing = 0;
 int active_song_index = 0;
 int start_time = 0;
@@ -62,11 +65,9 @@ void progress_radio(int use_player_inputs)
       }
     }
 
-    send_notes(get_song(), current_time, !get_fail_state() || !use_player_inputs);
+    send_notes(get_song(), current_time,
+               !get_fail_state() || !use_player_inputs);
   }
 }
 
-int get_song_num()
-{
-  return sizeof(songs) / sizeof(songs[0]);
-}
+int get_song_num() { return sizeof(songs) / sizeof(songs[0]); }
