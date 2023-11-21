@@ -19,6 +19,7 @@ void next_menu(){
   else{
       set_menu_index(current_menu_index+1);
   }
+  play_song(current_menu_index);
 }
 
 void prev_menu(){
@@ -28,6 +29,7 @@ void prev_menu(){
   else{
       set_menu_index(current_menu_index-1);
   }
+  play_song(current_menu_index);
 }
 
 void init_menu() { set_menu_index(0); }

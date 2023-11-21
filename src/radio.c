@@ -39,23 +39,27 @@ int get_song_progress_sixteenths() {
 
 int prev_sixteenth = 0;
 int notes_to_play[5];
-void progress_radio() {
+void progress_radio(int use_player_inputs) {
   if (playing == 1) {
     int current_time = get_song_progress_milliseconds();
     int curr_sixteenth = get_song_progress_sixteenths();
 
-    read_button_inputs();
-
-    // only update game-state when moving from one 16th to the next
-    if (prev_sixteenth != curr_sixteenth)
+    if (use_player_inputs)
     {
-      get_notes_to_play(get_song(), curr_sixteenth, notes_to_play);
-      check_played_notes(notes_to_play); // sets is_fail_state
-      reset_inputs_after_sixteenth();
-      prev_sixteenth = curr_sixteenth;
+      read_button_inputs();
+
+      // only update game-state when moving from one 16th to the next
+      if (prev_sixteenth != curr_sixteenth)
+      {
+        get_notes_to_play(get_song(), curr_sixteenth, notes_to_play);
+        check_played_notes(notes_to_play); // sets is_fail_state
+        reset_inputs_after_sixteenth();
+        prev_sixteenth = curr_sixteenth;
+      }
     }
 
-    send_notes(get_song(), current_time, !get_fail_state());
+
+    send_notes(get_song(), current_time, !get_fail_state() || !use_player_inputs);
   }
 }
 

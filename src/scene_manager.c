@@ -19,12 +19,13 @@ void setScene(enum scene new_scene) { current_scene = new_scene; }
 void progress_scene() {
   switch (current_scene){
     case LEVEL:
-      progress_radio();
+      progress_radio(1);
       render_level(get_song(), get_song_progress_sixteenths());
 
       if (buttonPressed(6)){
           delay(1000000);
           setScene(MENU);
+          stop();
           send_empty();
       }
 
@@ -32,6 +33,7 @@ void progress_scene() {
 
     case MENU:
       progress_menu();
+      progress_radio(0);
       if (buttonPressed(1)){
           delay(1000000);
           prev_menu();
@@ -44,7 +46,6 @@ void progress_scene() {
           delay(1000000);
           play_song(get_current_index());
           setScene(LEVEL);
-
       }
       break;
   }

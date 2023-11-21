@@ -10,7 +10,7 @@ int get_song_progress_milliseconds();
 int get_song_progress_sixteenths();
 song_t get_song();
 
-void progress_radio();
+void progress_radio(int use_player_inputs);
 
 int get_song_num();
 
