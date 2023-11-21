@@ -6,10 +6,10 @@
 #include "mini_midi_transfer.h"
 #include "timer.h"
 #include "controls.h"
-#include "eye_of_the_tiger.h"
+#include "supermario.h"
 
 song_t *songs[] = {&eye_of_the_tiger_song, &bjornen_sover_song,
-                   &kickstart_my_heart_song};
+                   &kickstart_my_heart_song, &super_mario_song};
 int playing = 0;
 int active_song_index = 0;
 int start_time = 0;
