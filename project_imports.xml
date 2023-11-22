@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdtprojectproperties>
+  <section name="org.eclipse.cdt.internal.ui.wizards.settingswizards.IncludePaths">
+    <language id="org.eclipse.cdt.core.gcc" name="C Source File">
+      <includepath>${StudioSdkPath}/platform/middleware/usb_gecko/inc</includepath>
+      <includepath>${StudioSdkPath}/platform/middleware/usb_gecko/src</includepath>
+      <includepath>${StudioSdkPath}/hardware/kit/common/drivers</includepath>
+      <includepath>${StudioSdkPath}/hardware/kit/EFM32GG_STK3700/config</includepath>
+      <includepath workspace_path="true">/${ProjName}/config</includepath>
+      <includepath workspace_path="true">/${ProjName}/autogen</includepath>
+      <includepath workspace_path="true">/${ProjName}</includepath>
+      <includepath>${StudioSdkPath}/platform/Device/SiliconLabs/EFM32GG/Include</includepath>
+      <includepath>${StudioSdkPath}/platform/common/inc</includepath>
+      <includepath>${StudioSdkPath}/hardware/board/inc</includepath>
+      <includepath>${StudioSdkPath}/platform/driver/button/inc</includepath>
+      <includepath>${StudioSdkPath}/platform/CMSIS/Core/Include</includepath>
+      <includepath>${StudioSdkPath}/platform/driver/debug/inc</includepath>
+      <includepath>${StudioSdkPath}/platform/service/device_init/inc</includepath>
+      <includepath>${StudioSdkPath}/platform/emdrv/common/inc</includepath>
+      <includepath>${StudioSdkPath}/platform/emlib/inc</includepath>
+      <includepath>${StudioSdkPath}/platform/emdrv/gpiointerrupt/inc</includepath>
+      <includepath>${StudioSdkPath}/platform/service/iostream/inc</includepath>
+      <includepath>${StudioSdkPath}/platform/driver/leddrv/inc</includepath>
+      <includepath>${StudioSdkPath}/platform/service/power_manager/inc</includepath>
+      <includepath>${StudioSdkPath}/platform/common/toolchain/inc</includepath>
+      <includepath>${StudioSdkPath}/platform/service/system/inc</includepath>
+      <includepath>${StudioSdkPath}/platform/service/sleeptimer/inc</includepath>
+    </language>
+    <language id="org.eclipse.cdt.core.assembly" name="asm,s,S,S79,s79">
+      <includepath workspace_path="true">/${ProjName}/config</includepath>
+      <includepath workspace_path="true">/${ProjName}/autogen</includepath>
+      <includepath workspace_path="true">/${ProjName}</includepath>
+      <includepath>${StudioSdkPath}/platform/Device/SiliconLabs/EFM32GG/Include</includepath>
+      <includepath>${StudioSdkPath}/platform/common/inc</includepath>
+      <includepath>${StudioSdkPath}/hardware/board/inc</includepath>
+      <includepath>${StudioSdkPath}/platform/driver/button/inc</includepath>
+      <includepath>${StudioSdkPath}/platform/CMSIS/Core/Include</includepath>
+      <includepath>${StudioSdkPath}/platform/driver/debug/inc</includepath>
+      <includepath>${StudioSdkPath}/platform/service/device_init/inc</includepath>
+      <includepath>${StudioSdkPath}/platform/emdrv/common/inc</includepath>
+      <includepath>${StudioSdkPath}/platform/emlib/inc</includepath>
+      <includepath>${StudioSdkPath}/platform/emdrv/gpiointerrupt/inc</includepath>
+      <includepath>${StudioSdkPath}/platform/service/iostream/inc</includepath>
+      <includepath>${StudioSdkPath}/platform/driver/leddrv/inc</includepath>
+      <includepath>${StudioSdkPath}/platform/service/power_manager/inc</includepath>
+      <includepath>${StudioSdkPath}/platform/common/toolchain/inc</includepath>
+      <includepath>${StudioSdkPath}/platform/service/system/inc</includepath>
+      <includepath>${StudioSdkPath}/platform/service/sleeptimer/inc</includepath>
+      <includepath workspace_path="true">/${ProjName}/src</includepath>
+    </language>
+    <language name="Object File"/>
+  </section>
+  <section name="org.eclipse.cdt.internal.ui.wizards.settingswizards.Macros">
+    <language id="org.eclipse.cdt.core.gcc" name="C Source File">
+      <macro>
+        <name>DEBUG_EFM</name>
+        <value>1</value>
+      </macro>
+      <macro>
+        <name>EFM32GG990F1024</name>
+        <value>1</value>
+      </macro>
+      <macro>
+        <name>SL_BOARD_NAME</name>
+        <value>"BRD2200A"</value>
+      </macro>
+      <macro>
+        <name>SL_BOARD_REV</name>
+        <value>"B05"</value>
+      </macro>
+      <macro>
+        <name>SL_COMPONENT_CATALOG_PRESENT</name>
+        <value>1</value>
+      </macro>
+    </language>
+    <language id="org.eclipse.cdt.core.assembly" name="asm,s,S,S79,s79">
+      <macro>
+        <name>DEBUG_EFM</name>
+        <value>1</value>
+      </macro>
+      <macro>
+        <name>EFM32GG990F1024</name>
+        <value>1</value>
+      </macro>
+      <macro>
+        <name>SL_BOARD_NAME</name>
+        <value>"BRD2200A"</value>
+      </macro>
+      <macro>
+        <name>SL_BOARD_REV</name>
+        <value>"B05"</value>
+      </macro>
+      <macro>
+        <name>SL_COMPONENT_CATALOG_PRESENT</name>
+        <value>1</value>
+      </macro>
+    </language>
+    <language name="Object File"/>
+  </section>
+</cdtprojectproperties>
